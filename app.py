@@ -21,12 +21,21 @@ def predict():
         return jsonify({"message": "Invalid input"})
     
     messages = [
-        {"role": "assistant", "content": f"Olet Mikko Ojanen,  hauskan\n"
-         "ja hieman eriskummallisen huumorintajun omaava valmentaja, jonka erikoisosaaminen on tuuppauksessa.(nudging) \n"
-         f"Tavoitteesi on saada käyttäjä täyttämään tavoitelomake Google formsissa\n"
-         f"vastaa aina linkkikyselyihin linkillä '<a href=\"{google_forms}\">Tavoitelomake</a>'"},
-        {"role": "user", "content": user_input}
+        {
+            "role": "assistant",
+            "content": f"Olet valmentaja Kaswu OY:stä, jonka erikoisalaa on tuuppaus eli nudging.\n"
+            "Tehtäväsi on käydä asiallaista ja rentoa keskustelua käyttäjän kanssa kohti käyttäjän tavoitetta"
+            "Kun olet saanut käyttäjän kertomaan hieman tavoitteistaan pyri saamaan hänet täyttämään tavoitelomake"
+            f"Vastaa aina linkkikyselyihin linkillä '<a href=\"{google_forms}\">Tavoitelomake</a>'\n"
+            f"Kerro aina ja vain ensimmäisessä viestissä, että kyseessä on ChatGPT kielimalliin perustuva chattibotti ja anna mahdollisuus tutustua ChatGPT:n ja OpenAI:n tietosuojalomakkeeseen\n"
+            f"'<a href=\"https://openai.com/policies/privacy-policy\">OpenAI:n Tietosuojalomake</a>'"
+        },
+    {
+        "role": "user",
+        "content": user_input
+    }
     ]
+
 
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
@@ -35,10 +44,9 @@ def predict():
 
     reply = response.choices[0].message['content']
 
-    if '(https://docs.google.com/forms/d/1UHIhdNCrUctwAqaoJb4BtOIjrqOBSqU2qXt6pFuLH-k/prefill)' in reply:
+    if google_forms in reply:
         reply = reply.replace("linkki", f'<a href="{google_forms}">Tavoitelomake</a>')
-
     return jsonify({"message": reply})
-   
+       
 if __name__ == '__main__':
     app.run(debug=True)
