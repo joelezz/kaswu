@@ -1,0 +1,30 @@
+name: Azure Static Web Apps CI/CD
+
+on:
+  push:
+    branches:
+      - main  # Change this to your main branch name
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14  # Use the version of Node.js your app requires
+
+      - name: Build and Deploy
+        env:
+          AZURE_STATIC_WEB_APPS_API_TOKEN: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+        run: |
+          # Build your web app (modify this depending on your project)
+          npm install
+          npm run build
+
+          # Deploy to Azure Static Web Apps
+          npx azure/static-web-apps-deploy@v1
