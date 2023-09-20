@@ -12,7 +12,7 @@ body {
 }
 
 *, html {
-    --primaryGradient: linear-gradient(93.12deg, #ff001e 0.52%, #ff00bb 100%);
+    --primaryGradient: linear-gradient(93.12deg, #ff001e 0.52%, #ff001e 100%);
     --secondaryGradient: linear-gradient(268.91deg, #ff001e -2.14%, #9C1DE7 99.69%);
     --primaryBoxShadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
     --secondaryBoxShadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
