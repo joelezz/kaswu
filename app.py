@@ -3,7 +3,7 @@ import openai
 from dotenv import load_dotenv
 import os
 
-app = Flask(__name__)
+flask_app = Flask(__name__)
 
 load_dotenv()
 google_forms = os.getenv("GOOGLE_FORMS")
@@ -14,7 +14,7 @@ def index():
     logo_path = "static/images/kaswu.png"
     return render_template('index.html', logo_path=logo_path)
 
-@app.route('/predict', methods=['POST'])
+@flask_app.route('/predict', methods=['POST'])
 def predict():
     user_input = request.json.get('message')
     if user_input is None or user_input == "":
@@ -49,4 +49,4 @@ def predict():
     return jsonify({"message": reply})
        
 if __name__ == '__main__':
-    app.run(debug=True)
+    flask_app.run(host="0.0.0.0", port=8000)
