@@ -3,7 +3,7 @@ name: Azure Static Web Apps CI/CD
 on:
   push:
     branches:
-      - main  # Change this to your main branch name
+      - main
 
 jobs:
   build-and-deploy:
@@ -13,18 +13,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
         with:
-          node-version: 14  # Use the version of Node.js your app requires
+          python-version: 3.8  # Specify the Python version you need
 
-      - name: Build and Deploy
-        env:
-          AZURE_STATIC_WEB_APPS_API_TOKEN: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-        run: |
-          # Build your web app (modify this depending on your project)
-          npm install
-          npm run build
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
-          # Deploy to Azure Static Web Apps
-          npx azure/static-web-apps-deploy@v1
+      # Add additional steps for building and deploying your web app
