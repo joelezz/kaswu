@@ -1,11 +1,11 @@
 from flask import Flask, render_template, request, jsonify
 import openai
-from dotenv import load_dotenv
 import os
+from dotenv import load_dotenv
 
 flask_app = Flask(__name__)
 
-load_dotenv()
+print(load_dotenv())
 google_forms = os.getenv("GOOGLE_FORMS")
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
