@@ -5,11 +5,11 @@ from dotenv import load_dotenv
 
 flask_app = Flask(__name__)
 
-print(load_dotenv())
+load_dotenv()
 google_forms = os.getenv("GOOGLE_FORMS")
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-@flask_app.route('/')
+@flask_app.route('https://kaswu-botti.azurewebsites.net/')
 def index():
     logo_path = "static/images/kaswu.png"
     return render_template('index.html', logo_path=logo_path)
