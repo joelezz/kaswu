@@ -14,7 +14,7 @@ def index():
     logo_path = "static/images/kaswu.png"
     return render_template('index.html', logo_path=logo_path)
 
-@flask_app.route('kaswu-botti.azurewebsites.net/predict', methods=['POST'])
+@flask_app.route('https://kaswu-botti.azurewebsites.net/predict', methods=['POST'])
 def predict():
     user_input = request.json.get('message')
     if user_input is None or user_input == "":
