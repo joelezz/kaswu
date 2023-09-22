@@ -9,12 +9,12 @@ load_dotenv()
 google_forms = os.getenv("GOOGLE_FORMS")
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-@flask_app.route('https://kaswu-botti.azurewebsites.net/')
+@flask_app.route('/')
 def index():
     logo_path = "static/images/kaswu.png"
     return render_template('index.html', logo_path=logo_path)
 
-@flask_app.route('https://kaswu-botti.azurewebsites.net/predict', methods=['POST'])
+@flask_app.route('/predict', methods=['POST'])
 def predict():
     user_input = request.json.get('message')
     if user_input is None or user_input == "":
