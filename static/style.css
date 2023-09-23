@@ -8,11 +8,11 @@ body {
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
     font-size: 100%;
-    background: #fff;
+    background: #F1F1F1;
 }
 
 *, html {
-    --primaryGradient: linear-gradient(93.12deg, #ff001e 0.52%, #ff001e 100%);
+    --primaryGradient: linear-gradient(93.12deg, #ff001e 0.52%, #000000 500%);
     --secondaryGradient: linear-gradient(268.91deg, #ff001e -2.14%, #9C1DE7 99.69%);
     --primaryBoxShadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
     --secondaryBoxShadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
@@ -22,51 +22,29 @@ body {
 /* CHATBOX
 =============== */
 .chatbox {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px; /* Set the desired width */
-    height: 600px; /* Set the desired height */
-    background-color: #fff;
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
-    overflow: hidden; /* Hide any overflow content */
-    z-index: 9999;
-    margin: 0; /* Remove any margin */
-    padding: 0; /* Remove any padding */
-    box-sizing: border-box;
-}
-
-/* Add a class for chatbox content */
-.chatbox-content {
-    width: 100%;
-    height: 100%;
-    padding: 20px; /* Add padding as needed for chatbox content */
-    background-color: #fff; /* Set the background color */
-    box-sizing: border-box;
-    overflow-y: auto; /* Allow vertical scrolling if content exceeds height */
-    position: relative;
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
 }
 
 /* CONTENT IS CLOSE */
 .chatbox__support {
     display: flex;
     flex-direction: column;
-    background: #fff;
-    width: 100%; /* Make the chatbox content full-width */
+    background: #eee;
+    width: 300px;
     height: 350px;
     z-index: -123456;
     opacity: 0;
     transition: all .5s ease-in-out;
 }
 
-/* CONTENT IS OPEN */
+/* CONTENT ISOPEN */
 .chatbox--active {
-    transform: translateY(5px);
-    transform: translateX(5px);
+    transform: translateY(-40px);
     z-index: 123456;
     opacity: 1;
+
 }
 
 /* BUTTON */
@@ -82,9 +60,10 @@ body {
     cursor: pointer;
 }
 
+
 /* HEADER */
 .chatbox__header {
-    position: flex;
+    position: sticky;
     top: 0;
     background: orange;
 }
@@ -93,9 +72,8 @@ body {
 .chatbox__messages {
     margin-top: auto;
     display: flex;
-    overflow-y: auto;
+    overflow-y: scroll;
     flex-direction: column-reverse;
-    max-height: 50%; /* Limit the maximum height for messages container */
 }
 
 .messages__item {
@@ -119,10 +97,10 @@ body {
 }
 
 .chatbox__support {
-    background: #fff;
-    height: 600px;
+    background: #f9f9f9;
+    height: 450px;
     width: 350px;
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 }
@@ -143,7 +121,6 @@ body {
 .chatbox__image--header {
     margin-right: 10px;
 }
-
 .chatbox__image--header2 {
     margin-left: 10px;
     width: 40px;
@@ -163,20 +140,14 @@ body {
 
 /* Messages */
 .chatbox__messages {
-    margin-top: 0%;
-    display: flex;
-    flex-direction: column-reverse; /* Reverse the order to display messages from bottom to top */
-    max-height: 300px; /* Limit the maximum height for messages container */
-    overflow-y: auto; /* Add vertical scrollbar if messages exceed the container height */
-    position: relative;
+    padding: 0 20px;
 }
 
 .messages__item {
     margin-top: 10px;
-    background: #fff;
+    background: #E0E0E0;
     padding: 8px 12px;
     max-width: 70%;
-    word-wrap: break/word;
 }
 
 .messages__item--visitor,
@@ -185,6 +156,7 @@ body {
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     background-color: #0076eb; /* Light blue for user messages */
+
 }
 
 .messages__item--operator {
@@ -196,7 +168,7 @@ body {
 }
 
 .messages__item--user {
-    background-color: #fff; /* Light blue for user messages */
+    background-color: #eff7ff; /* Light blue for user messages */
 }
 
 .messages__item--bot {
@@ -263,9 +235,12 @@ body {
     cursor: pointer;
 }
 
+/* Add this to your style.css */
+
+
 /* button styles */
+
 .response-button {
-    display: inline-block;
     margin: 0.2rem;
     padding: 0.5rem 1rem;
     font-size: 14px;
@@ -279,16 +254,4 @@ body {
 
 .response-button:hover {
     background-color: #0056b3;
-}
-
-/* Media queries for responsiveness */
-@media screen and (max-width: 768px) {
-    .chatbox {
-        bottom: 10px; /* Adjust chatbox position for smaller screens */
-        right: 10px;
-        width: 90%; /* Adjust the width for smaller screens */
-        height: 90%; /* Adjust the height for smaller screens */
-    }
-
-    /* Additional styles for other elements if needed */
 }
