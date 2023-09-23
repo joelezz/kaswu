@@ -159,6 +159,10 @@ body {
 
 }
 
+.messages__item--bot-typing {
+    animation: blinking 1s infinite;
+}
+
 .messages__item--operator {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
@@ -173,6 +177,7 @@ body {
 
 .messages__item--bot {
     background-color: var (--primary); /* Light blue for user messages */
+    animation: blinking 1s infinite;
 }
 
 @keyframes blinking {
@@ -219,10 +224,6 @@ body {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
-}
-
-.messages__item--bot-typing {
-    animation: blinking 1s infinite;
 }
 
 .bot-typing-container {
