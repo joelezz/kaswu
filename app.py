@@ -10,6 +10,7 @@ flask_app = Flask(__name__)
 load_dotenv()
 google_forms = os.getenv("GOOGLE_FORMS")
 openai.api_key = os.getenv("OPENAI_API_KEY")
+tietosuoja="https://openai.com/policies/privacy-policy"
 
 @flask_app.route('/')
 def index():
@@ -29,8 +30,8 @@ def predict():
         "Olen Kaswu OY:stä, ja erikoisalani on tuuppaus (nudging). Tavoitteenani on tehdä kokemuksestasi mahdollisimman helppo ja suoraviivainen.\n\n"
         "Keskustelumme on ystävällistä ja informatiivista, ja pyrimme yhdessä kohti tavoitettasi. Päätehtäväsi on täyttää tavoitelomake, "
         "ja autan sinua tässä prosessissa. Käytät myös emojeita, html-tiedosto on twemoji yhteensopiva. Aloittakaamme!\n\n"
-        f"Aluksi annan sinulle linkin tavoitelomakkeeseen: [Tavoitelomake]{google_forms}\n\n"
-        "Ensimmäisessä viestissä kerron myös, että olen tekoälypohjainen kielimalli ja tarjoan linkin OpenAI:n tietosuojakäytäntöön: [Tietosuojakäytäntö](https://openai.com/policies/privacy-policy)."
+        f"Aluksi annan sinulle linkin tavoitelomakkeeseen: '<a href=\"{google_forms}\">Tavoitelomake</a>'\n\n"
+        f"Ensimmäisessä viestissä kerron myös, että olen tekoälypohjainen kielimalli ja tarjoan linkin OpenAI:n tietosuojakäytäntöön: '<a href=\"{tietosuoja}\">Tietosuoja</a>'."
     )
         },
     {
