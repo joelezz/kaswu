@@ -13,7 +13,7 @@ body {
 
 *, html {
     --primaryGradient: linear-gradient(93.12deg, #ff001e 0.52%, #ff001e 100%);
-    --secondaryGradient: linear-gradient(268.91deg, #ff001e -2.14%, #ff001e 99.69%);
+    --secondaryGradient: linear-gradient(268.91deg, #ff001e -2.14%, #9C1DE7 99.69%);
     --primaryBoxShadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
     --secondaryBoxShadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
     --primary: #00ff2f;
@@ -25,6 +25,7 @@ body {
     position: center;
     bottom: 30px;
     right: 30px;
+    width: 300px; /* Set the default width for the chatbox */
 }
 
 /* CONTENT IS CLOSE */
@@ -32,19 +33,22 @@ body {
     display: flex;
     flex-direction: column;
     background: #eee;
+<<<<<<< HEAD
     width: 600px;
+=======
+    width: 100%; /* Make the chatbox content full-width */
+>>>>>>> b73a7f62ccdd0014e4e3c74a31ced76ec5ff372a
     height: 350px;
     z-index: -123456;
     opacity: 0;
     transition: all .5s ease-in-out;
 }
 
-/* CONTENT ISOPEN */
+/* CONTENT IS OPEN */
 .chatbox--active {
     transform: translateY(-40px);
     z-index: 123456;
     opacity: 1;
-
 }
 
 /* BUTTON */
@@ -60,7 +64,6 @@ body {
     cursor: pointer;
 }
 
-
 /* HEADER */
 .chatbox__header {
     position: sticky;
@@ -74,6 +77,7 @@ body {
     display: flex;
     overflow-y: scroll;
     flex-direction: column-reverse;
+    max-height: 300px; /* Limit the maximum height for messages container */
 }
 
 .messages__item {
@@ -121,6 +125,7 @@ body {
 .chatbox__image--header {
     margin-right: 10px;
 }
+
 .chatbox__image--header2 {
     margin-left: 10px;
     width: 40px;
@@ -156,7 +161,6 @@ body {
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     background-color: #0076eb; /* Light blue for user messages */
-
 }
 
 .messages__item--operator {
@@ -236,7 +240,6 @@ body {
 }
 
 /* button styles */
-
 .response-button {
     display: inline-block;
     margin: 0.2rem;
@@ -253,3 +256,10 @@ body {
 .response-button:hover {
     background-color: #0056b3;
 }
+
+/* Media queries for responsiveness */
+@media screen and (max-width: 768px) {
+    .chatbox {
+        bottom: 10px; /* Adjust chatbox position for smaller screens */
+        right: 10px;
+        width:
