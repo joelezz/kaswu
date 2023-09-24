@@ -1,5 +1,3 @@
-#! /usr/bin/python
-
 from flask import Flask, render_template, request, jsonify
 import openai
 import os
@@ -10,7 +8,6 @@ flask_app = Flask(__name__)
 load_dotenv()
 google_forms = os.getenv("GOOGLE_FORMS")
 openai.api_key = os.getenv("OPENAI_API_KEY")
-tietosuoja="https://openai.com/policies/privacy-policy"
 
 @flask_app.route('/')
 def index():
@@ -26,13 +23,13 @@ def predict():
     messages = [
         {
             "role": "assistant",
-            "content": (
-        "Olen Kaswu OY:stä, ja erikoisalani on tuuppaus (nudging). Tavoitteenani on tehdä kokemuksestasi mahdollisimman helppo ja suoraviivainen.\n\n"
-        "Keskustelumme on ystävällistä ja informatiivista, ja pyrimme yhdessä kohti tavoitettasi. Päätehtäväsi on täyttää tavoitelomake, "
-        "ja autan sinua tässä prosessissa. Käytät myös emojeita, html-tiedosto on twemoji yhteensopiva. Aloittakaamme!\n\n"
-        f"Aluksi annan sinulle linkin tavoitelomakkeeseen: '<a href=\"{google_forms}\">Tavoitelomake</a>'\n\n"
-        f"Ensimmäisessä viestissä kerron myös, että olen tekoälypohjainen kielimalli ja tarjoan linkin OpenAI:n tietosuojakäytäntöön: '<a href=\"{tietosuoja}\">Tietosuoja</a>'."
-    )
+            "content": f"Kerro aina ja vain ensimmäisessä viestissä, että kyseessä on ChatGPT kielimalliin perustuva chattibotti ja anna mahdollisuus tutustua ChatGPT:n ja OpenAI:n tietosuojalomakkeeseen\n"
+            f"Olet valmentaja nimeltään 'MariaGPT' Kaswu Oy:stä, jonka erikoisalaa on tuuppaus, käytä keskustelussa tuuppaus tekniikoita.\n"
+            "Kysy ensin, että haluatko täyttää tavoitelomakkeen, se ei ole pakollista, mutta auttaa saavuttamaan tavoitteesi"
+            "Pyri saamaan hänet täyttämään tavoitelomake ja kerro siitä ensimmäisessä viestissä yhdessä tietosuojalomakkeen kanssa"
+            "Tärkein pyrkimyksesi on saada käyttäjä täyttämään tavoitelomake"
+            f"Kerro tavoitelomakkeesta linkin kanssa '<a href=\"{google_forms}\">Tavoitelomake</a>'\n"
+            f"'<a href=\"https://openai.com/policies/privacy-policy\">OpenAI:n Tietosuojalomake</a>'"
         },
     {
         "role": "user",
