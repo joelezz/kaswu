@@ -144,10 +144,16 @@ body {
 }
 
 .messages__item {
-    margin-top: 10px;
+    /* Normaali tyyli */
     background: #E0E0E0;
     padding: 8px 12px;
     max-width: 70%;
+    transition: transform 0.3s ease; /* Lisätään animaatio transform-ominaisuudelle */
+}
+
+.messages__item.new {
+    /* Uusi tyyli uusille viesteille */
+    transform: translateY(-20px); /* Siirtää viestin ylöspäin */
 }
 
 .messages__item--visitor,
