@@ -37,20 +37,19 @@
                         <p class="chatbox__description--header">Hei, olen valmentajasi Maria. Miten voisin auttaa sinua?</p>
                     </div>
                 </div>
-                    <div class="chatbox__messages chatbox-content">
-                    
-                            <div class="bot-typing-container">
-                                <div class="typing-animation">
-                                    <span id="block" class="typing-text"></span>
-                                </div>
-                                <div class="messages__item messages__item--bot-typing">...</div>
-                            </div>
+                <div class="chatbox__messages chatbox-content">
+                    <div class="bot-typing-container">
+                        <div class="typing-animation">
+                            <span id="block" class="typing-text"></span>
+                        </div>
+                        <div class="messages__item messages__item--bot-typing">...</div>
                     </div>
-                        <div class="chatbox__footer">
-                            <input type="text" placeholder="Kirjoita jotain botille...">
-                            <button class="chatbox__send--footer send__button">Send</button>
-                        </div>        
-        </div>
+                </div>
+                <div class="chatbox__footer">
+                    <input type="text" placeholder="Kirjoita jotain botille...">
+                    <button class="chatbox__send--footer send__button">Send</button>
+                </div>
+            </div>
             <div class="chatbox__button">
                 <button><img src="{{ url_for('static', filename='images/chatbox-icon.svg') }}" alt="Chat Icon" /></button>
             </div>
