@@ -213,6 +213,31 @@ body {
     }
 }
 
+/* Lisää animaatiolle tarvittavat tyylit */
+@keyframes typing-dots {
+    0%, 20% {
+        content: ".";
+    }
+    40% {
+        content: "..";
+    }
+    60% {
+        content: "...";
+    }
+    80%, 100% {
+        content: "";
+    }
+}
+
+/* Lisää animaatio bottityyping-luokkaan */
+.messages__item--bot-typing::after {
+    content: "";
+    display: inline-block;
+    width: 1em;
+    animation: typing-dots 1.4s infinite;
+}
+
+
 .messages__item--bot-typing {
     animation: typing 1s infinite steps(4, end);
     white-space: nowrap;

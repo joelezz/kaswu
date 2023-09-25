@@ -28,6 +28,7 @@ def predict():
             "Kysy minkälaisen tavoitteen kanssa käyttäjä haluaa apua?"
             "Kysy ensin, että haluatko täyttää tavoitelomakkeen, se ei ole pakollista, mutta auttaa saavuttamaan tavoitteesi"
             "Pyri saamaan hänet täyttämään tavoitelomake ja kerro siitä ensimmäisessä viestissä yhdessä tietosuojalomakkeen kanssa"
+            "Käytä mahdollisimman paljon emojeita, jotta viestittely pysyy hauskana"
             "Tärkein pyrkimyksesi on saada käyttäjä täyttämään tavoitelomake"
             f"Kerro tavoitelomakkeesta linkin kanssa '<a href=\"{google_forms}\">Tavoitelomake</a>'\n"
             f'<a href=\"https://openai.com/policies/privacy-policy\">OpenAI:n Tietosuojalomake</a>'

@@ -1,3 +1,14 @@
+// Esiin nostetut funktiot, jotka ovat käytettävissä koko luokassa
+function showBotTypingAnimation(chatbox) {
+    const botTypingContainer = chatbox.querySelector('.bot-typing-container');
+    botTypingContainer.style.display = 'block';
+}
+
+function hideBotTypingAnimation(chatbox) {
+    const botTypingContainer = chatbox.querySelector('.bot-typing-container');
+    botTypingContainer.style.display = 'none';
+}
+
 class Chatbox {
     constructor() {
         this.args = {
@@ -31,7 +42,7 @@ class Chatbox {
     toggleState(chatbox) {
         this.state = !this.state;
 
-        // show or hides the box
+        // show or hide the box
         if(this.state) {
             chatbox.classList.add('chatbox--active')
         } else {
@@ -48,24 +59,10 @@ class Chatbox {
 
         let msg1 = { name: "User", message: text1 }
         this.messages.push(msg1);
-    
-        // Luo uusi viestielementti
-        const chatmessage = chatbox.querySelector('.chatbox__messages');
-        const newMessageDiv = document.createElement('div');
-        newMessageDiv.className = 'messages__item messages__item--visitor'; 
-        newMessageDiv.innerHTML = msg1.message;
-    
-        // Lisää uusi viesti animaatiolla
-        chatmessage.appendChild(newMessageDiv);
-        setTimeout(() => {
-            newMessageDiv.classList.add('messages__item.new');
-        }, 10);
-    
-        // Poista luokka "new" ja laita viesti paikoilleen, kun animaatio on valmis
-        setTimeout(() => {
-            newMessageDiv.classList.remove('messages__item.new');
-        }, 300); // Odotetaan 300 millisekuntia, sitten poistetaan luokka "messages__item.new"
-    
+
+        // Näytä animaatio botti vastaa
+        showBotTypingAnimation(chatbox);
+
         fetch('https://kaswu-botti.azurewebsites.net/predict', {
             method: 'POST',
             body: JSON.stringify({ message: text1 }),
@@ -80,10 +77,16 @@ class Chatbox {
             this.messages.push(msg2);
             this.updateChatText(chatbox)
             textField.value = ''
+
+            // Piilota animaatio kun botti lopettaa vastaamisen
+            hideBotTypingAnimation(chatbox);
         }).catch((error) => {
             console.error('Error:', error);
             this.updateChatText(chatbox)
             textField.value = ''
+
+            // Piilota animaatio kun botti lopettaa vastaamisen
+            hideBotTypingAnimation(chatbox);
         });
     }
 
@@ -91,7 +94,7 @@ class Chatbox {
         var html = '';
         this.messages.slice().reverse().forEach(function(item, _index) {
             if (item.name === "Bot")
-            {
+            {   
                 html += '<div class="messages__item messages__item--visitor">' + item.message + '</div>'
             }
             else
@@ -102,8 +105,8 @@ class Chatbox {
 
         const chatmessage = chatbox.querySelector('.chatbox__messages');
         chatmessage.innerHTML = html;
-    }}
-
+    }
+}
 
 const chatbox = new Chatbox();
 chatbox.display();
