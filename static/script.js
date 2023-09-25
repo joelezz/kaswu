@@ -8,6 +8,9 @@ class Chatbox {
 
         this.state = false;
         this.messages = [];
+
+        this.toggleState(this.args.chatBox);
+
     }
 
     display() {
@@ -28,7 +31,7 @@ class Chatbox {
     toggleState(chatbox) {
         this.state = !this.state;
 
-        // show or hides the box
+        // show or hide the box
         if(this.state) {
             chatbox.classList.add('chatbox--active')
         } else {
@@ -45,6 +48,7 @@ class Chatbox {
     
         let msg1 = { name: "User", message: text1 }
         this.messages.push(msg1);
+<<<<<<< HEAD
     
         // Lisää automaattinen viesti botilta alkuun
         let msg2 = {
@@ -53,6 +57,12 @@ class Chatbox {
         };
         this.messages.unshift(msg2);
     
+=======
+
+        // Display the bot is typing message
+        this.displayBotTyping(chatbox);
+
+>>>>>>> 2989991d703fdd579895456d4b71a151923d3ec1
         fetch('https://kaswu-botti.azurewebsites.net/predict', {
             method: 'POST',
             body: JSON.stringify({ message: text1 }),
@@ -61,6 +71,7 @@ class Chatbox {
                 'Content-Type': 'application/json'
             },
         })
+<<<<<<< HEAD
             .then(r => r.json())
             .then(r => {
                 let msg3 = { name: "Bot", message: r.message };
@@ -74,6 +85,46 @@ class Chatbox {
                 this.updateChatText(chatbox)
                 textField.value = ''
             });
+=======
+        .then(r => r.json())
+        .then(r => {
+            let msg2 = { name: "Bot", message: r.message };
+            this.messages.push(msg2);
+
+            // Remove the bot is typing message
+            this.removeBotTyping(chatbox);
+
+            // Update the chatbox with the bot's reply
+            this.updateChatText(chatbox);
+            textField.value = '';
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+
+            // Remove the bot is typing message
+            this.removeBotTyping(chatbox);
+
+            // Update the chatbox with an error message
+            this.updateChatText(chatbox);
+            textField.value = '';
+        });
+    }
+
+    // Function to display the bot is typing message
+    displayBotTyping(chatbox) {
+        const botTypingMessage = '<div class="messages__item messages__item--bot-typing">Bot is typing...</div>';
+        const chatmessage = chatbox.querySelector('.chatbox__messages');
+        chatmessage.innerHTML += botTypingMessage;
+    }
+
+    // Function to remove the bot is typing message
+    removeBotTyping(chatbox) {
+        const chatmessage = chatbox.querySelector('.chatbox__messages');
+        const botTypingElement = chatmessage.querySelector('.messages__item--bot-typing');
+        if (botTypingElement) {
+            chatmessage.removeChild(botTypingElement);
+        }
+>>>>>>> 2989991d703fdd579895456d4b71a151923d3ec1
     }
     
 
@@ -81,7 +132,7 @@ class Chatbox {
         var html = '';
         this.messages.slice().reverse().forEach(function(item, _index) {
             if (item.name === "Bot")
-            {
+            {   
                 html += '<div class="messages__item messages__item--visitor">' + item.message + '</div>'
             }
             else
@@ -94,7 +145,6 @@ class Chatbox {
         chatmessage.innerHTML = html;
     }
 }
-
 
 const chatbox = new Chatbox();
 chatbox.display();

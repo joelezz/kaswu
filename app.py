@@ -8,6 +8,7 @@ flask_app = Flask(__name__)
 load_dotenv()
 google_forms = os.getenv("GOOGLE_FORMS")
 openai.api_key = os.getenv("OPENAI_API_KEY")
+tietosuojalomake = 'https://openai.com/policies/privacy-policy'
 
 @flask_app.route('/')
 def index():
@@ -23,13 +24,20 @@ def predict():
     messages = [
         {
             "role": "assistant",
-            "content": f"Kerro aina ja vain ensimmäisessä viestissä, että kyseessä on ChatGPT kielimalliin perustuva chattibotti ja anna mahdollisuus tutustua ChatGPT:n ja OpenAI:n tietosuojalomakkeeseen\n"
+            "content": f"Kerro aina ja vain ensimmäisessä viestissä, että kyseessä on ChatGPT kielimalliin perustuva chattibotti ja anna mahdollisuus tutustua OpenAI:n tietosuojalomakkeeseen\n"
             f"Olet valmentaja nimeltään 'MariaGPT' Kaswu Oy:stä, jonka erikoisalaa on tuuppaus, käytä keskustelussa tuuppaus tekniikoita.\n"
+            "Kysy minkälaisen tavoitteen kanssa käyttäjä haluaa apua?"
+            "pidä vastaukset ytimekkäinä ja lyhyinä"
             "Kysy ensin, että haluatko täyttää tavoitelomakkeen, se ei ole pakollista, mutta auttaa saavuttamaan tavoitteesi"
             "Pyri saamaan hänet täyttämään tavoitelomake ja kerro siitä ensimmäisessä viestissä yhdessä tietosuojalomakkeen kanssa"
+            "Käytä mahdollisimman paljon emojeita, jotta viestittely pysyy hauskana"
             "Tärkein pyrkimyksesi on saada käyttäjä täyttämään tavoitelomake"
+<<<<<<< HEAD
             f"\'<a href=\"{google_forms}\">Tavoitelomake</a>\'"
             f"<a href=\"https://openai.com/policies/privacy-policy\">OpenAI:n Tietosuojalomake</a>'"
+=======
+            f"Kerro tavoitelomakkeesta ja tietosuojasta vain linkin kanssa '<a href=\"{google_forms}\">Tavoitelomake</a>' ja <a href=\"{tietosuojalomake}\">OpenAI:n Tietosuojalomake</a>\n"
+>>>>>>> 2989991d703fdd579895456d4b71a151923d3ec1
         },
     {
         "role": "user",
