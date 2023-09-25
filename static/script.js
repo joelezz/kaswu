@@ -1,14 +1,3 @@
-// Esiin nostetut funktiot, jotka ovat käytettävissä koko luokassa
-function showBotTypingAnimation(chatbox) {
-    const botTypingContainer = chatbox.querySelector('.messages__item--bot-typing');
-    botTypingContainer.style.display = 'block';
-}
-
-function hideBotTypingAnimation(chatbox) {
-    const botTypingContainer = chatbox.querySelector('.messages__item--bot-typing');
-    botTypingContainer.style.display = 'none';
-}
-
 class Chatbox {
     constructor() {
         this.args = {
@@ -60,9 +49,6 @@ class Chatbox {
         let msg1 = { name: "User", message: text1 }
         this.messages.push(msg1);
 
-        // Näytä animaatio botti vastaa
-        showBotTypingAnimation(chatbox);
-
         fetch('https://kaswu-botti.azurewebsites.net/predict', {
             method: 'POST',
             body: JSON.stringify({ message: text1 }),
@@ -78,15 +64,11 @@ class Chatbox {
             this.updateChatText(chatbox)
             textField.value = ''
 
-            // Piilota animaatio kun botti lopettaa vastaamisen
-            hideBotTypingAnimation(chatbox);
         }).catch((error) => {
             console.error('Error:', error);
             this.updateChatText(chatbox)
             textField.value = ''
 
-            // Piilota animaatio kun botti lopettaa vastaamisen
-            hideBotTypingAnimation(chatbox);
         });
     }
 

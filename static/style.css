@@ -167,7 +167,10 @@ body {
 }
 
 .messages__item--bot-typing {
-    animation: blinking 1s infinite;
+    animation: typing 1s infinite steps(4, end);
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid; /* Add a cursor effect */
 }
 
 .messages__item--operator {
