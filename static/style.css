@@ -152,11 +152,6 @@ body {
     transition: transform 0.3s ease; /* Lisätään animaatio transform-ominaisuudelle */
 }
 
-.messages__item.new {
-    /* Uusi tyyli uusille viesteille */
-    transform: translateY(-20px); /* Siirtää viestin ylöspäin */
-}
-
 .messages__item--visitor,
 .messages__item--typing {
     border-top-left-radius: 20px;
@@ -187,7 +182,7 @@ body {
 
 .messages__item--bot {
     background-color: var (--primary); /* Light blue for user messages */
-    animation: blinking 1s infinite;
+    animation: typing-dots 1s infinite;
 }
 
 @keyframes blinking {
@@ -230,14 +225,6 @@ body {
     80%, 100% {
         content: "";
     }
-}
-
-/* Lisää animaatio bottityyping-luokkaan */
-.messages__item--bot-typing::after {
-    content: "";
-    display: inline-block;
-    width: 1em;
-    animation: typing-dots 1.4s infinite;
 }
 
 
