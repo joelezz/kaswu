@@ -50,6 +50,7 @@ body {
 /* BUTTON */
 .chatbox__button {
     text-align: right;
+    padding-bottom: 100px;
 }
 
 .send__button {
@@ -309,7 +310,7 @@ body {
         top: 0;
         left: 0;
         margin: 0;
-        padding: 0;
+        padding-top: 40px;
         border-radius: 0; /* Voit muokata chatboxin ulkoasua tarpeidesi mukaan */
     }
 
@@ -355,8 +356,8 @@ body {
         width: 400px; /* Määrittele chatboxin kiinteä leveys suurille näytöille */
         height: 600px; /* Määrittele chatboxin kiinteä korkeus suurille näytöille */
         position: fixed; /* Kiinnitetty sivun oikeaan alakulmaan */
-        bottom: 20px; /* Aseta chatboxin sijainti näytön alareunasta 20 pikseliä ylöspäin */
-        right: 20px; /* Aseta chatboxin sijainti näytön oikeasta reunasta 20 pikseliä vasemmalle */
+        bottom: 50px; /* Aseta chatboxin sijainti näytön alareunasta 20 pikseliä ylöspäin */
+        right: 50px; /* Aseta chatboxin sijainti näytön oikeasta reunasta 20 pikseliä vasemmalle */
         border-radius: 10px; /* Pyöristä kulmat suurille näytöille */
         background-color: white; /* Taustaväri */
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Lisää varjo suurille näytöille */
@@ -366,9 +367,13 @@ body {
     .chatbox__support {
         width: 100%; /* Chatboxin sisältö täyttää chatboxin leveyden suurilla näytöillä */
         height: 100%; /* Chatboxin sisältö täyttää chatboxin korkeuden suurilla näytöillä */
-        border-radius: 10px; /* Pyöristä chatboxin sisällön kulmat suurille näytöille */
+        border-radius: 100px; /* Pyöristä chatboxin sisällön kulmat suurille näytöille */
     }
-
+    .chatbox__button {
+        text-align: right;
+        padding-bottom: 100px;
+        border-radius: 200px;
+    }
     /* .chatbox__messages {
         /* Määrittele tarvittavat tyylit, jotta viestit näyttävät hyvältä suurilla näytöillä */
     }
