@@ -1,11 +1,11 @@
 // Esiin nostetut funktiot, jotka ovat käytettävissä koko luokassa
 function showBotTypingAnimation(chatbox) {
-    const botTypingContainer = chatbox.querySelector('.bot-typing-container');
+    const botTypingContainer = chatbox.querySelector('.messages__item--bot-typing');
     botTypingContainer.style.display = 'block';
 }
 
 function hideBotTypingAnimation(chatbox) {
-    const botTypingContainer = chatbox.querySelector('.bot-typing-container');
+    const botTypingContainer = chatbox.querySelector('.messages__item--bot-typing');
     botTypingContainer.style.display = 'none';
 }
 
