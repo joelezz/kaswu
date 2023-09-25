@@ -299,3 +299,82 @@ body {
 .response-button:hover {
     background-color: #0056b3;
 }
+
+/* Mobiilinäkymä */
+@media (max-width: 767px) {
+    .chatbox {
+        width: 100%; /* Chatbox täyttää näytön leveyden mobiililaitteilla */
+        height: 100%; /* Chatbox täyttää näytön korkeuden mobiililaitteilla */
+        position: fixed; /* Kiinnitetty sivun yläreunaan */
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 0;
+        border-radius: 0; /* Voit muokata chatboxin ulkoasua tarpeidesi mukaan */
+    }
+
+    .chatbox__support {
+        width: 100%; /* Chatboxin sisältö täyttää näytön leveyden mobiililaitteilla */
+        height: 100%; /* Chatboxin sisältö täyttää näytön korkeuden mobiililaitteilla */
+        border-radius: 0; /* Voit muokata chatboxin sisällön ulkoasua tarpeidesi mukaan */
+
+/* Tablet-näkymä */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .chatbox {
+        width: 80%; /* Määrittele chatboxin leveys tablet-näkymälle */
+        height: 80%; /* Määrittele chatboxin korkeus tablet-näkymälle */
+        position: fixed; /* Kiinnitetty sivun yläreunaan */
+        top: 10%; /* Aseta chatboxin sijainti näytön yläreunasta 10% alaspäin */
+        left: 10%; /* Aseta chatboxin sijainti näytön vasemmasta reunasta 10% oikealle */
+        border-radius: 10px; /* Pyöristä kulmat tablet-näkymälle */
+        background-color: white; /* Taustaväri */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Lisää varjo tablet-näkymälle */
+        z-index: 9999; /* Aseta chatboxin päällekkäisyys muiden elementtien kanssa */
+    }
+
+    .chatbox__support {
+        width: 100%; /* Chatboxin sisältö täyttää näytön leveyden tablet-laitteilla */
+        height: 100%; /* Chatboxin sisältö täyttää näytön korkeuden tablet-laitteilla */
+        border-radius: 10px; /* Pyöristä chatboxin sisällön kulmat tablet-näkymälle */
+    }
+
+    //* .chatbox__messages {
+        /* Määrittele tarvittavat tyylit, jotta viestit näyttävät hyvältä tablet-laitteilla */
+    }
+
+    /*.chatbox__footer { 
+        /* Määrittele tarvittavat tyylit, jotta lähettämisalue näyttää hyvältä tablet-laitteilla */
+    } 
+
+    /* Voit jatkaa muiden chatboxin osien määrittelyä tarpeidesi mukaan */
+}
+
+/* Suuret näytöt */
+@media (min-width: 1024px) {
+    .chatbox {
+        width: 400px; /* Määrittele chatboxin kiinteä leveys suurille näytöille */
+        height: 600px; /* Määrittele chatboxin kiinteä korkeus suurille näytöille */
+        position: fixed; /* Kiinnitetty sivun oikeaan alakulmaan */
+        bottom: 20px; /* Aseta chatboxin sijainti näytön alareunasta 20 pikseliä ylöspäin */
+        right: 20px; /* Aseta chatboxin sijainti näytön oikeasta reunasta 20 pikseliä vasemmalle */
+        border-radius: 10px; /* Pyöristä kulmat suurille näytöille */
+        background-color: white; /* Taustaväri */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Lisää varjo suurille näytöille */
+        z-index: 9999; /* Aseta chatboxin päällekkäisyys muiden elementtien kanssa */
+    }
+
+    .chatbox__support {
+        width: 100%; /* Chatboxin sisältö täyttää chatboxin leveyden suurilla näytöillä */
+        height: 100%; /* Chatboxin sisältö täyttää chatboxin korkeuden suurilla näytöillä */
+        border-radius: 10px; /* Pyöristä chatboxin sisällön kulmat suurille näytöille */
+    }
+
+    /* .chatbox__messages {
+        /* Määrittele tarvittavat tyylit, jotta viestit näyttävät hyvältä suurilla näytöillä */
+    }
+
+    /* .chatbox__footer {
+        /* Määrittele tarvittavat tyylit, jotta lähettämisalue näyttää hyvältä suurilla näytöillä */
+    
+
+    /* Voit jatkaa muiden chatboxin osien määrittelyä tarpeidesi mukaan */
