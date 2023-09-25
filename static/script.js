@@ -42,31 +42,40 @@ class Chatbox {
         if (text1 === "") {
             return;
         }
-
+    
         let msg1 = { name: "User", message: text1 }
         this.messages.push(msg1);
-
+    
+        // Lisää automaattinen viesti botilta alkuun
+        let msg2 = {
+            name: "Bot",
+            message: "Hei, olen täällä auttamassa sinuasaavuttamaan tavoitteesi niin työssä kuin vapaa-ajalla. Anna minulle tavoitteesi, ja ohjaan sinua kohti niiden saavuttamista muutamilla yhteydenotoilla ja henkilökohtaisella tuellani. Voit tutustua myös tietosuojaan <a href=\"https://openai.com/policies/privacy-policy\">OpenAI:n Tietosuojalomake</a>"
+        };
+        this.messages.unshift(msg2);
+    
         fetch('https://kaswu-botti.azurewebsites.net/predict', {
             method: 'POST',
             body: JSON.stringify({ message: text1 }),
             mode: 'cors',
             headers: {
-              'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
-          })
-          .then(r => r.json())
-          .then(r => {
-            let msg2 = { name: "Bot", message: r.message };
-            this.messages.push(msg2);
-            this.updateChatText(chatbox)
-            textField.value = ''
-
-        }).catch((error) => {
-            console.error('Error:', error);
-            this.updateChatText(chatbox)
-            textField.value = ''
-          });
+        })
+            .then(r => r.json())
+            .then(r => {
+                let msg3 = { name: "Bot", message: r.message };
+                this.messages.push(msg3);
+    
+                this.updateChatText(chatbox)
+                textField.value = ''
+    
+            }).catch((error) => {
+                console.error('Error:', error);
+                this.updateChatText(chatbox)
+                textField.value = ''
+            });
     }
+    
 
     updateChatText(chatbox) {
         var html = '';
