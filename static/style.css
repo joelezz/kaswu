@@ -11,27 +11,43 @@ body {
     background: #F1F1F1;
 }
 
+*, html {
+    --primaryGradient: linear-gradient(93.12deg, #ff001e 0.52%, #000000 500%);
+    --secondaryGradient: linear-gradient(268.91deg, #ff001e -2.14%, #9C1DE7 99.69%);
+    --primaryBoxShadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+    --secondaryBoxShadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
+    --primary: #00ff2f;
+}
+
+/* CHATBOX
+=============== */
 .chatbox {
     position: absolute;
     bottom: 30px;
     right: 30px;
 }
 
+/* CONTENT IS CLOSE */
 .chatbox__support {
     display: flex;
     flex-direction: column;
     background: #eee;
     width: 300px;
     height: 350px;
+    z-index: -123456;
     opacity: 0;
-    transition: all 0.5s ease-in-out;
+    transition: all .5s ease-in-out;
 }
 
+/* CONTENT ISOPEN */
 .chatbox--active {
     transform: translateY(-40px);
+    z-index: 123456;
     opacity: 1;
+
 }
 
+/* BUTTON */
 .chatbox__button {
     text-align: right;
     padding-bottom: 100px;
@@ -45,12 +61,15 @@ body {
     cursor: pointer;
 }
 
+
+/* HEADER */
 .chatbox__header {
     position: sticky;
     top: 0;
     background: orange;
 }
 
+/* MESSAGES */
 .chatbox__messages {
     margin-top: auto;
     display: flex;
@@ -59,14 +78,83 @@ body {
 }
 
 .messages__item {
+    background: orange;
     max-width: 60.6%;
     width: fit-content;
+}
+
+.messages__item--operator {
+    margin-left: auto;
+}
+
+.messages__item--visitor {
+    margin-right: auto;
+}
+
+/* FOOTER */
+.chatbox__footer {
+    position: sticky;
+    bottom: 0;
+}
+
+.chatbox__support {
+    background: #f9f9f9;
+    height: 450px;
+    width: 350px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+/* HEADER */
+.chatbox__header {
+    background: var(--primaryGradient);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: var(--primaryBoxShadow);
+}
+
+.chatbox__image--header {
+    margin-right: 10px;
+}
+.chatbox__image--header2 {
+    margin-left: 10px;
+    width: 40px;
+    height: 40px;
+    background: white;
+}
+
+.chatbox__heading--header {
+    font-size: 1.2rem;
+    color: white;
+}
+
+.chatbox__description--header {
+    font-size: .9rem;
+    color: white;
+}
+
+/* Messages */
+.chatbox__messages {
+    padding: 0 20px;
+}
+
+.messages__item {
+    /* Normaali tyyli */
+    background: #E0E0E0;
     padding: 8px 12px;
-    transition: transform 0.3s ease;
+    max-width: 70%;
+    transition: transform 0.3s ease; /* Lisätään animaatio transform-ominaisuudelle */
 }
 
 .messages__item.new {
-    transform: translateY(-20px);
+    /* Uusi tyyli uusille viesteille */
+    transform: translateY(-20px); /* Siirtää viestin ylöspäin */
 }
 
 .messages__item--visitor,
@@ -74,9 +162,74 @@ body {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
-    background-color: #0076eb;
+    background-color: #0076eb; /* Light blue for user messages */
+
 }
 
+.messages__item--bot-typing {
+    animation: blinking 1s infinite;
+}
+
+.messages__item--operator {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background: var(--primary);
+    color: white;
+}
+
+.messages__item--user {
+    background-color: #eff7ff; /* Light blue for user messages */
+}
+
+.messages__item--bot {
+    background-color: var (--primary); /* Light blue for user messages */
+    animation: blinking 1s infinite;
+}
+
+@keyframes blinking {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes typing {
+    0%, 100% {
+        opacity: 1;
+        width: 0;
+    }
+    25% {
+        width: 0;
+    }
+    50% {
+        opacity: 1;
+        width: 1em;
+    }
+    75% {
+        width: 1em;
+    }
+}
+
+/* Lisää animaatiolle tarvittavat tyylit */
+@keyframes typing-dots {
+    0%, 20% {
+        content: ".";
+    }
+    40% {
+        content: "..";
+    }
+    60% {
+        content: "...";
+    }
+    80%, 100% {
+        content: "";
+    }
+}
+
+/* Lisää animaatio bottityyping-luokkaan */
 .messages__item--bot-typing::after {
     content: "";
     display: inline-block;
@@ -84,12 +237,78 @@ body {
     animation: typing-dots 1.4s infinite;
 }
 
+
 .messages__item--bot-typing {
     animation: typing 1s infinite steps(4, end);
     white-space: nowrap;
     overflow: hidden;
-    border-right: 2px solid;
+    border-right: 2px solid; /* Add a cursor effect */
 }
+
+/* button styles */
+.response-button {
+    margin: 0.2rem;
+    padding: 0.5rem 1rem;
+    font-size: 14px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.bot-typing-container {
+    display: none;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: transparent;
+}
+
+.chatbox__footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px;
+    background: var(--primaryGradient);
+    box-shadow: var(--secondaryBoxShadow);
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    margin-top: 20px;
+}
+
+.chatbox__footer input {
+    width: 80%;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 30px;
+    text-align: left;
+}
+
+.chatbox__send--footer {
+    color: white;
+}
+
+.chatbox__button button,
+.chatbox__button button:focus,
+.chatbox__button button:visited {
+    padding: 10px;
+    background: white;
+    border: none;
+    outline: none;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+/* Add this to your style.css */
+
+
+/* button styles */
 
 .response-button {
     margin: 0.2rem;
@@ -107,67 +326,85 @@ body {
     background-color: #0056b3;
 }
 
+/* Mobiilinäkymä */
 @media (max-width: 767px) {
     .chatbox {
-        width: 100%;
-        height: 100%;
-        position: fixed;
+        width: 100%; /* Chatbox täyttää näytön leveyden mobiililaitteilla */
+        height: 100%; /* Chatbox täyttää näytön korkeuden mobiililaitteilla */
+        position: fixed; /* Kiinnitetty sivun yläreunaan */
         top: 0;
         left: 0;
         margin: 0;
         padding-top: 40px;
-        border-radius: 0;
+        border-radius: 0; /* Voit muokata chatboxin ulkoasua tarpeidesi mukaan */
     }
 
     .chatbox__support {
-        width: 100%;
-        height: 100%;
-        border-radius: 0;
-    }
-}
+        width: 100%; /* Chatboxin sisältö täyttää näytön leveyden mobiililaitteilla */
+        height: 100%; /* Chatboxin sisältö täyttää näytön korkeuden mobiililaitteilla */
+        border-radius: 0; /* Voit muokata chatboxin sisällön ulkoasua tarpeidesi mukaan */
 
+/* Tablet-näkymä */
 @media (min-width: 768px) and (max-width: 1023px) {
     .chatbox {
-        width: 80%;
-        height: 80%;
-        position: fixed;
-        top: 10%;
-        left: 10%;
-        border-radius: 10px;
-        background-color: white;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        z-index: 9999;
+        width: 80%; /* Määrittele chatboxin leveys tablet-näkymälle */
+        height: 80%; /* Määrittele chatboxin korkeus tablet-näkymälle */
+        position: fixed; /* Kiinnitetty sivun yläreunaan */
+        top: 10%; /* Aseta chatboxin sijainti näytön yläreunasta 10% alaspäin */
+        left: 10%; /* Aseta chatboxin sijainti näytön vasemmasta reunasta 10% oikealle */
+        border-radius: 10px; /* Pyöristä kulmat tablet-näkymälle */
+        background-color: white; /* Taustaväri */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Lisää varjo tablet-näkymälle */
+        z-index: 9999; /* Aseta chatboxin päällekkäisyys muiden elementtien kanssa */
     }
 
     .chatbox__support {
-        width: 100%;
-        height: 100%;
-        border-radius: 10px;
+        width: 100%; /* Chatboxin sisältö täyttää näytön leveyden tablet-laitteilla */
+        height: 100%; /* Chatboxin sisältö täyttää näytön korkeuden tablet-laitteilla */
+        border-radius: 10px; /* Pyöristä chatboxin sisällön kulmat tablet-näkymälle */
     }
+
+    //* .chatbox__messages {
+        /* Määrittele tarvittavat tyylit, jotta viestit näyttävät hyvältä tablet-laitteilla */
+    }
+
+    /*.chatbox__footer { 
+        /* Määrittele tarvittavat tyylit, jotta lähettämisalue näyttää hyvältä tablet-laitteilla */
+    } 
+
+    /* Voit jatkaa muiden chatboxin osien määrittelyä tarpeidesi mukaan */
 }
 
+/* Suuret näytöt */
 @media (min-width: 1024px) {
     .chatbox {
-        width: 400px;
-        height: 600px;
-        position: fixed;
-        bottom: 50px;
-        right: 50px;
-        border-radius: 10px;
-        background-color: white;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        z-index: 9999;
+        width: 400px; /* Määrittele chatboxin kiinteä leveys suurille näytöille */
+        height: 600px; /* Määrittele chatboxin kiinteä korkeus suurille näytöille */
+        position: fixed; /* Kiinnitetty sivun oikeaan alakulmaan */
+        bottom: 50px; /* Aseta chatboxin sijainti näytön alareunasta 20 pikseliä ylöspäin */
+        right: 50px; /* Aseta chatboxin sijainti näytön oikeasta reunasta 20 pikseliä vasemmalle */
+        border-radius: 10px; /* Pyöristä kulmat suurille näytöille */
+        background-color: white; /* Taustaväri */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Lisää varjo suurille näytöille */
+        z-index: 9999; /* Aseta chatboxin päällekkäisyys muiden elementtien kanssa */
     }
 
     .chatbox__support {
-        width: 100%;
-        height: 100%;
-        border-radius: 100px;
+        width: 100%; /* Chatboxin sisältö täyttää chatboxin leveyden suurilla näytöillä */
+        height: 100%; /* Chatboxin sisältö täyttää chatboxin korkeuden suurilla näytöillä */
+        border-radius: 100px; /* Pyöristä chatboxin sisällön kulmat suurille näytöille */
     }
-
     .chatbox__button {
         text-align: right;
         padding-bottom: 100px;
         border-radius: 200px;
     }
-}
+    /* .chatbox__messages {
+        /* Määrittele tarvittavat tyylit, jotta viestit näyttävät hyvältä suurilla näytöillä */
+    }
+
+    /* .chatbox__footer {
+        /* Määrittele tarvittavat tyylit, jotta lähettämisalue näyttää hyvältä suurilla näytöillä */
+    
+
+    /* Voit jatkaa muiden chatboxin osien määrittelyä tarpeidesi mukaan */
