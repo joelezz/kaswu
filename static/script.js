@@ -49,27 +49,55 @@ class Chatbox {
         let msg1 = { name: "User", message: text1 }
         this.messages.push(msg1);
 
-        fetch('https://kaswu-botti.azurewebsites.net/predict', {
+        // Display the bot is typing message
+        this.displayBotTyping(chatbox);
+
+        fetch('https://kaswu-botti.azurewebsites.net/predict', 'http://127.0.0.1:8000/predict', {
             method: 'POST',
             body: JSON.stringify({ message: text1 }),
             mode: 'cors',
             headers: {
               'Content-Type': 'application/json'
             },
-          })
-          .then(r => r.json())
-          .then(r => {
+        })
+        .then(r => r.json())
+        .then(r => {
             let msg2 = { name: "Bot", message: r.message };
             this.messages.push(msg2);
-            this.updateChatText(chatbox)
-            textField.value = ''
 
-        }).catch((error) => {
+            // Remove the bot is typing message
+            this.removeBotTyping(chatbox);
+
+            // Update the chatbox with the bot's reply
+            this.updateChatText(chatbox);
+            textField.value = '';
+        })
+        .catch((error) => {
             console.error('Error:', error);
-            this.updateChatText(chatbox)
-            textField.value = ''
 
+            // Remove the bot is typing message
+            this.removeBotTyping(chatbox);
+
+            // Update the chatbox with an error message
+            this.updateChatText(chatbox);
+            textField.value = '';
         });
+    }
+
+    // Function to display the bot is typing message
+    displayBotTyping(chatbox) {
+        const botTypingMessage = '<div class="messages__item messages__item--bot-typing">Bot is typing...</div>';
+        const chatmessage = chatbox.querySelector('.chatbox__messages');
+        chatmessage.innerHTML += botTypingMessage;
+    }
+
+    // Function to remove the bot is typing message
+    removeBotTyping(chatbox) {
+        const chatmessage = chatbox.querySelector('.chatbox__messages');
+        const botTypingElement = chatmessage.querySelector('.messages__item--bot-typing');
+        if (botTypingElement) {
+            chatmessage.removeChild(botTypingElement);
+        }
     }
 
     updateChatText(chatbox) {
