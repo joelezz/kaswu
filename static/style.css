@@ -162,7 +162,7 @@ body {
 }
 
 .messages__item--bot-typing {
-    animation: typing 1s infinite steps(4, end);
+    animation: typing-dots 1s infinite steps(4, end);
     white-space: nowrap;
     overflow: hidden;
     border-right: 2px solid; /* Add a cursor effect */
@@ -182,7 +182,7 @@ body {
 
 .messages__item--bot {
     background-color: var (--primary); /* Light blue for user messages */
-    animation: typing-dots 1s infinite;
+    animation: blinking 1s infinite;
 }
 
 @keyframes blinking {

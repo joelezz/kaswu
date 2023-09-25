@@ -52,7 +52,7 @@ class Chatbox {
         // Display the bot is typing message
         this.displayBotTyping(chatbox);
 
-        fetch('https://kaswu-botti.azurewebsites.net/predict', 'http://127.0.0.1:8000/predict', {
+        fetch('https://kaswu-botti.azurewebsites.net/predict', {
             method: 'POST',
             body: JSON.stringify({ message: text1 }),
             mode: 'cors',
