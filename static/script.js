@@ -8,6 +8,9 @@ class Chatbox {
 
         this.state = false;
         this.messages = [];
+
+        this.toggleState(this.args.chatBox);
+
     }
 
     display() {
@@ -44,22 +47,25 @@ class Chatbox {
         }
 
         let msg1 = { name: "User", message: text1 }
-        // Lisää uusi viesti ja anna sille luokka "new" animaatiota varten
-        // Lisää uusi viesti ja anna sille luokka "new" animaatiota varten
         this.messages.push(msg1);
+    
+        // Luo uusi viestielementti
         const chatmessage = chatbox.querySelector('.chatbox__messages');
         const newMessageDiv = document.createElement('div');
         newMessageDiv.className = 'messages__item messages__item--visitor'; 
         newMessageDiv.innerHTML = msg1.message;
+    
+        // Lisää uusi viesti animaatiolla
         chatmessage.appendChild(newMessageDiv);
-        newMessageDiv.classList.add('new');
-
+        setTimeout(() => {
+            newMessageDiv.classList.add('messages__item.new');
+        }, 10);
+    
         // Poista luokka "new" ja laita viesti paikoilleen, kun animaatio on valmis
         setTimeout(() => {
-        newMessageDiv.classList.remove('new');
-        }, 300); // Odotetaan 300 millisekuntia, sitten poistetaan luokka "new"
-
-
+            newMessageDiv.classList.remove('messages__item.new');
+        }, 300); // Odotetaan 300 millisekuntia, sitten poistetaan luokka "messages__item.new"
+    
         fetch('https://kaswu-botti.azurewebsites.net/predict', {
             method: 'POST',
             body: JSON.stringify({ message: text1 }),
@@ -74,12 +80,11 @@ class Chatbox {
             this.messages.push(msg2);
             this.updateChatText(chatbox)
             textField.value = ''
-
         }).catch((error) => {
             console.error('Error:', error);
             this.updateChatText(chatbox)
             textField.value = ''
-          });
+        });
     }
 
     updateChatText(chatbox) {
@@ -97,8 +102,7 @@ class Chatbox {
 
         const chatmessage = chatbox.querySelector('.chatbox__messages');
         chatmessage.innerHTML = html;
-    }
-}
+    }}
 
 
 const chatbox = new Chatbox();

@@ -23,13 +23,15 @@ def predict():
     messages = [
         {
             "role": "assistant",
-            "content": f"Kerro aina ja vain ensimmäisessä viestissä, että kyseessä on ChatGPT kielimalliin perustuva chattibotti ja anna mahdollisuus tutustua ChatGPT:n ja OpenAI:n tietosuojalomakkeeseen\n"
+            "content": f"Kerro aina ja vain ensimmäisessä viestissä, että kyseessä on ChatGPT kielimalliin perustuva chattibotti ja anna mahdollisuus tutustua OpenAI:n tietosuojalomakkeeseen\n"
             f"Olet valmentaja nimeltään 'MariaGPT' Kaswu Oy:stä, jonka erikoisalaa on tuuppaus, käytä keskustelussa tuuppaus tekniikoita.\n"
+            "Kysy minkälaisen tavoitteen kanssa käyttäjä haluaa apua?"
             "Kysy ensin, että haluatko täyttää tavoitelomakkeen, se ei ole pakollista, mutta auttaa saavuttamaan tavoitteesi"
             "Pyri saamaan hänet täyttämään tavoitelomake ja kerro siitä ensimmäisessä viestissä yhdessä tietosuojalomakkeen kanssa"
             "Tärkein pyrkimyksesi on saada käyttäjä täyttämään tavoitelomake"
             f"Kerro tavoitelomakkeesta linkin kanssa '<a href=\"{google_forms}\">Tavoitelomake</a>'\n"
-            f"'<a href=\"https://openai.com/policies/privacy-policy\">OpenAI:n Tietosuojalomake</a>'"
+            f'<a href=\"https://openai.com/policies/privacy-policy\">OpenAI:n Tietosuojalomake</a>'
+            'Hyv'
         },
     {
         "role": "user",
