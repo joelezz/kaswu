@@ -86,7 +86,7 @@ class Chatbox {
 
     // Function to display the bot is typing message
     displayBotTyping(chatbox) {
-        const botTypingMessage = '<div class="messages__item messages__item--bot-typing">Bot is typing...</div>';
+        const botTypingMessage = '<div class="typing-animation">...</div>';
         const chatmessage = chatbox.querySelector('.chatbox__messages');
         chatmessage.innerHTML += botTypingMessage;
     }
