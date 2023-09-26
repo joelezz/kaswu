@@ -149,7 +149,6 @@ body {
     background: #E0E0E0;
     padding: 8px 12px;
     max-width: 70%;
-    transition: transform 0.3s ease; /* Lisätään animaatio transform-ominaisuudelle */
 }
 
 .messages__item--visitor,
@@ -157,7 +156,7 @@ body {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
-    background-color: #0076eb; /* Light blue for user messages *
+    background-color: #0076eb; 
 
 }
 
@@ -245,6 +244,8 @@ body {
         width: 100%; /* Chatboxin sisältö täyttää näytön leveyden mobiililaitteilla */
         height: 100%; /* Chatboxin sisältö täyttää näytön korkeuden mobiililaitteilla */
         border-radius: 0; /* Voit muokata chatboxin sisällön ulkoasua tarpeidesi mukaan */
+    }
+}
 
 /* Tablet-näkymä */
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -265,16 +266,6 @@ body {
         height: 100%; /* Chatboxin sisältö täyttää näytön korkeuden tablet-laitteilla */
         border-radius: 10px; /* Pyöristä chatboxin sisällön kulmat tablet-näkymälle */
     }
-
-    //* .chatbox__messages {
-        /* Määrittele tarvittavat tyylit, jotta viestit näyttävät hyvältä tablet-laitteilla */
-    }
-
-    /*.chatbox__footer { 
-        /* Määrittele tarvittavat tyylit, jotta lähettämisalue näyttää hyvältä tablet-laitteilla */
-    } 
-
-    /* Voit jatkaa muiden chatboxin osien määrittelyä tarpeidesi mukaan */
 }
 
 /* Suuret näytöt */
@@ -301,12 +292,4 @@ body {
         padding-bottom: 100px;
         border-radius: 200px;
     }
-    /* .chatbox__messages {
-        /* Määrittele tarvittavat tyylit, jotta viestit näyttävät hyvältä suurilla näytöillä */
-    }
-
-    /* .chatbox__footer {
-        /* Määrittele tarvittavat tyylit, jotta lähettämisalue näyttää hyvältä suurilla näytöillä */
-    
-
-    /* Voit jatkaa muiden chatboxin osien määrittelyä tarpeidesi mukaan */
+}

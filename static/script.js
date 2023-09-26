@@ -48,7 +48,6 @@ class Chatbox {
     
         let msg1 = { name: "User", message: text1 }
         this.messages.push(msg1);
-<<<<<<< HEAD
     
         // Lisää automaattinen viesti botilta alkuun
         let msg2 = {
@@ -57,12 +56,6 @@ class Chatbox {
         };
         this.messages.unshift(msg2);
     
-=======
-
-        // Display the bot is typing message
-        this.displayBotTyping(chatbox);
-
->>>>>>> 2989991d703fdd579895456d4b71a151923d3ec1
         fetch('https://kaswu-botti.azurewebsites.net/predict', {
             method: 'POST',
             body: JSON.stringify({ message: text1 }),
@@ -71,7 +64,6 @@ class Chatbox {
                 'Content-Type': 'application/json'
             },
         })
-<<<<<<< HEAD
             .then(r => r.json())
             .then(r => {
                 let msg3 = { name: "Bot", message: r.message };
@@ -85,7 +77,6 @@ class Chatbox {
                 this.updateChatText(chatbox)
                 textField.value = ''
             });
-=======
         .then(r => r.json())
         .then(r => {
             let msg2 = { name: "Bot", message: r.message };
@@ -124,7 +115,6 @@ class Chatbox {
         if (botTypingElement) {
             chatmessage.removeChild(botTypingElement);
         }
->>>>>>> 2989991d703fdd579895456d4b71a151923d3ec1
     }
     
 

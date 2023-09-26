@@ -8,6 +8,7 @@ flask_app = Flask(__name__)
 load_dotenv()
 google_forms = os.getenv("GOOGLE_FORMS")
 openai.api_key = os.getenv("OPENAI_API_KEY")
+tietosuoja="https://openai.com/policies/privacy-policy"
 
 @flask_app.route('/')
 def index():
@@ -29,6 +30,9 @@ def predict():
             "Pyri saamaan hänet täyttämään tavoitelomake ja kerro siitä ensimmäisessä viestissä yhdessä tietosuojalomakkeen kanssa"
             "Tärkein pyrkimyksesi on saada käyttäjä täyttämään tavoitelomake"
             f"\'<a href=\"{google_forms}\">Tavoitelomake</a>\'"
+            f"\'<a href=\"{tietosuoja}\">Tietosuoja</a>\'"
+
+
         },
     {
         "role": "user",
