@@ -4,25 +4,6 @@
     <meta charset="UTF-8">
     <title>Chatbot</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <style>
-        @keyframes cursorBlink {
-            0% {
-                border-right-color: initial;
-            }
-            to {
-                border-right-color: transparent;
-            }
-        }
-
-        #block {
-            border-width: 0;
-            border-style: solid;
-            border-color: black;
-            border-right-width: 8px;
-            white-space: pre-wrap;
-            animation: cursorBlink 0.6s ease-in-out infinite alternate;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
@@ -61,20 +42,11 @@
     </script>
     <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
     <script>
-        const typedText = document.getElementById('block');
-        const textToType = 'Moi olen Maria, miten voisin auttaa sinua tänään?';
-        let currentIndex = 0;
-
-        function typeCharacter() {
-            typedText.innerHTML += textToType[currentIndex];
-            currentIndex += 1;
-
-            if (currentIndex < textToType.length) {
-                setTimeout(typeCharacter, 100);
-            }
-        }
-
-        typeCharacter();
+        document.addEventListener("DOMContentLoaded", function() {
+            const chatbox = new Chatbox();
+            chatbox.display();
+        });
     </script>
+    
 </body>
 </html>
