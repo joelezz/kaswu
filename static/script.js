@@ -76,18 +76,7 @@ class Chatbox {
                 console.error('Error:', error);
                 this.updateChatText(chatbox)
                 textField.value = ''
-            });
-        .then(r => r.json())
-        .then(r => {
-            let msg2 = { name: "Bot", message: r.message };
-            this.messages.push(msg2);
-
-            // Remove the bot is typing message
-            this.removeBotTyping(chatbox);
-
-            // Update the chatbox with the bot's reply
-            this.updateChatText(chatbox);
-            textField.value = '';
+            
         })
         .catch((error) => {
             console.error('Error:', error);
