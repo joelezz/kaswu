@@ -94,7 +94,7 @@ class Chatbox {
     // Function to remove the bot is typing message
     removeBotTyping(chatbox) {
         const chatmessage = chatbox.querySelector('.chatbox__messages');
-        const botTypingElement = chatmessage.querySelector('.messages__item--bot-typing');
+        const botTypingElement = chatmessage.querySelector('.typing-animation');
         if (botTypingElement) {
             chatmessage.removeChild(botTypingElement);
         }
