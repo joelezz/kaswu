@@ -10,6 +10,7 @@ class Chatbox {
         this.messages = [];
 
         this.toggleState(this.args.chatBox);
+        
 
     }
 
