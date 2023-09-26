@@ -10,6 +10,8 @@ class Chatbox {
         this.messages = [];
 
         this.toggleState(this.args.chatBox);
+        this.displayWelcomeMessage(this.args.chatBox); // Lisää tervetuloviesti heti luonnin yhteydessä
+
 
     }
 
@@ -105,7 +107,17 @@ class Chatbox {
             chatmessage.removeChild(botTypingElement);
         }
     }
-    
+
+    displayWelcomeMessage(chatbox) {
+        // Lisää tervetuloviesti
+        let welcomeMessage = {
+            name: "Bot",
+            message: "Hei, olen täällä auttamassa sinuasaavuttamaan tavoitteesi niin työssä kuin vapaa-ajalla. Anna minulle tavoitteesi, ja ohjaan sinua kohti niiden saavuttamista muutamilla yhteydenotoilla ja henkilökohtaisella tuellani. Voit tutustua myös tietosuojaan <a href=\"https://openai.com/policies/privacy-policy\">OpenAI:n Tietosuojalomake</a>"
+        };
+
+        this.messages.push(welcomeMessage);
+        this.updateChatText(chatbox);
+    }
 
     updateChatText(chatbox) {
         var html = '';
