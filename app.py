@@ -8,7 +8,6 @@ flask_app = Flask(__name__)
 load_dotenv()
 google_forms = os.getenv("GOOGLE_FORMS")
 openai.api_key = os.getenv("OPENAI_API_KEY")
-tietosuoja="https://openai.com/policies/privacy-policy"
 
 @flask_app.route('/')
 def index():
@@ -24,14 +23,10 @@ def predict():
     messages = [
         {
             "role": "assistant",
-            "content": f"Kirjoita kolme lyhyitä ja ytimekkäitä vastauksia"
-            f"Anna minulle tavoitteesi, ja ohjaan sinua kohti niiden saavuttamista muutamilla yhteydenotoilla ja henkilökohtaisella tuellani. Voit tutustua myös tietosuojaan '\"<a href=\'{tietosuoja}\'>OpenAI:n Tietosuojalomake</a>\"' "
-            f"Olet valmentaja nimeltään 'MariaGPT' Kaswu Oy:stä, jonka erikoisalaa on tuuppaus, käytä keskustelussa tuuppaus tekniikoita.\n"
-            "Kysy mahdollisimman usein, että haluatko täyttää tavoitelomakkeen, se ei ole pakollista, mutta auttaa saavuttamaan tavoitteesi"
-            "Pyri saamaan hänet täyttämään tavoitelomake ja kerro siitä heti ensimmäisessä viestissä yhdessä tietosuojalomakkeen kanssa"
+            "content": f"Olet valmentaja nimeltään 'MariaGPT' Kaswu Oy:stä, jonka erikoisalaa on tuuppaus, käytä keskustelussa tuuppaus tekniikoita.\n"
+            "Käytä paljone emojeita ja kirjoita lyhyitä yhden tai kahden virkkeen vastauksia, kieliasusi on yksinkertaista, niin että tavallinen nuorikin ymmärtää"
             "Tärkein pyrkimyksesi on saada käyttäjä täyttämään tavoitelomake"
             f"\'<a href=\"{google_forms}\">Tavoitelomake</a>\'"
-
         },
     {
         "role": "user",
@@ -53,3 +48,4 @@ def predict():
        
 if __name__ == '__main__':
     flask_app.run(host="0.0.0.0", port=8000)
+
