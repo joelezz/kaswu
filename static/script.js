@@ -52,7 +52,7 @@ class Chatbox {
         // Lisää automaattinen viesti botilta alkuun
         let msg2 = {
             name: "Bot",
-            message: "Hei, olen Maria OpenAI:n ChatGPT:n voimauttama apuri. Autan sinua saavuttamaan tavoitteesi tällä voit aloittaa esimerkiksi täyttämällä: \'<a href=\"{google_forms}\">Tavoitelomake</a>\' tai voidaan jutella vielä lisää, mutta voit kysyä minulta aina lomakkeesta, niin lähetän sen sinulle. Voit tutustua myös <a href=\"https://openai.com/policies/privacy-policy\">OpenAI:n Tietosuojalomakkeeseen</a>"
+            message: "Hei, olen täällä auttamassa sinuasaavuttamaan tavoitteesi niin työssä kuin vapaa-ajalla. Anna minulle tavoitteesi, ja ohjaan sinua kohti niiden saavuttamista muutamilla yhteydenotoilla ja henkilökohtaisella tuellani. Voit tutustua myös tietosuojaan <a href=\"https://openai.com/policies/privacy-policy\">OpenAI:n Tietosuojalomake</a>"
         };
         this.messages.unshift(msg2);
     
@@ -78,37 +78,6 @@ class Chatbox {
                 textField.value = ''
             });
     }
-<<<<<<< HEAD
-
-    // Function to display the bot is typing message
-    displayBotTyping(chatbox) {
-        const botTypingMessage = '<div class="typing-animation">...</div>';
-        const chatmessage = chatbox.querySelector('.chatbox__messages');
-        chatmessage.innerHTML += botTypingMessage;
-    }
-
-    // Function to remove the bot is typing message
-    removeBotTyping(chatbox) {
-        const chatmessage = chatbox.querySelector('.chatbox__messages');
-        const botTypingElement = chatmessage.querySelector('.typing-animation');
-        if (botTypingElement) {
-            chatmessage.removeChild(botTypingElement);
-        }
-    }
-
-    displayWelcomeMessage(chatbox) {
-        // Lisää tervetuloviesti
-        let welcomeMessage = {
-            name: "Bot",
-            message: "Hei, olen täällä auttamassa sinua saavuttamaan tavoitteesi niin työssä kuin vapaa-ajalla. Anna minulle tavoitteesi, ja ohjaan sinua kohti niiden saavuttamista muutamilla yhteydenotoilla ja henkilökohtaisella tuellani. Voit tutustua myös tietosuojaan <a href=\"https://openai.com/policies/privacy-policy\">OpenAI:n Tietosuojalomake</a>"
-        };
-
-        this.messages.push(welcomeMessage);
-        this.updateChatText(chatbox);
-    }
-=======
-    
->>>>>>> 6f192df9101b26322a3efbd67bac843291b20efd
 
     updateChatText(chatbox) {
         var html = '';
