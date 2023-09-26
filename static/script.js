@@ -53,7 +53,7 @@ class Chatbox {
             // Lisää kirjoitusanimaatio botin viestiin
         let msg1 = {
             name: "Bot",
-            message: "<span class='typing-animation'>...</span>"
+            message: "<span class='typing-animation'></span>"
         };
         this.messages.push(msg1);
 
@@ -66,7 +66,7 @@ class Chatbox {
             message: "Hei, olen Maria OpenAI:n ChatGPT:n tehostama apuri. Autan sinua saavuttamaan tavoitteesi tällä voit aloittaa esimerkiksi täyttämällä: \'<a href=\"{google_forms}\">Tavoitelomake</a>\' tai voidaan jutella vielä lisää, mutta voit kysyä minulta aina lomakkeesta, niin lähetän sen sinulle. Voit tutustua myös <a href=\"https://openai.com/policies/privacy-policy\">OpenAI:n Tietosuojalomakkeeseen</a>"
         };
         this.messages.unshift(msg2);
-    
+
         fetch('https://kaswu-botti.azurewebsites.net/predict', {
             method: 'POST',
             body: JSON.stringify({ message: text1 }),
@@ -76,31 +76,29 @@ class Chatbox {
             },
         })
             .then(r => r.json())
+
             .then(r => {
                 let msg3 = { name: "Bot", message: r.message };
-                this.messages.push(msg3);
-    
-                this.updateChatText(chatbox)
-                textField.value = ''
-    
-            }).catch((error) => {
-                console.error('Error:', error);
-                this.updateChatText(chatbox)
-                textField.value = ''
-            });
+                    textField.value = ''
 
             setTimeout(() => {
                 this.messages.pop(); // Poista kirjoitusanimaatio
                 this.updateChatText(chatbox);
         
-                // Simuloi botin vastaus (voit korvata tämän oikealla botin vastauksella)
-                let msg3 = {
-                    name: "Bot",
-                    message: "Tässä on botin vastaus..."
-                };
                 this.messages.push(msg3);
                 this.updateChatText(chatbox);
             }, 3000); // 3 sekunnin viive
+                
+    
+            })
+            
+            .catch((error) => {
+                console.error('Error:', error);
+                this.updateChatText(chatbox)
+                textField.value = ''
+            });
+
+            
         }
     
 
