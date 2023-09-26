@@ -176,7 +176,9 @@ body {
     background-color: var (--primary); /* Light blue for user messages */
 }
 
-
+.typing-animation {
+    display: none;
+}
 
 .bot-typing-container {
     display: none;
