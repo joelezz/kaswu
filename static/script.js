@@ -84,7 +84,7 @@ class Chatbox {
         // Add animation before the Fetch request
         this.addTypingAnimation(chatbox);
     
-        fetch('http://127.0.0.1:5000/predict', {
+        fetch('https://kaswu-botti.azurewebsites.net/predict', {
             method: 'POST',
             body: JSON.stringify({ message: text1 }),
             mode: 'cors',
