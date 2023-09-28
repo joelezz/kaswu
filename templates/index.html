@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KASWU - MariaGPT</title>
+    <title>Chatbot</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+
 </head>
 <body>
     <div class="container">
@@ -15,26 +16,28 @@
                         <img src="{{ url_for('static', filename='images/kaswu.png') }}" alt="image">
                     </div>
                     <div class="chatbox__content--header">
-                        <h4 class="chatbox__heading--header">MariaGPT</h4>
-                        <p class="chatbox__description--header">Hei, olen valmentajasi Maria. Miten voisin auttaa sinua?</p>
+                        <h4 class="chatbox__heading--header">MariaGPT -chat avustaja</h4>
+                        <p class="chatbox__description--header">Hei. Nimeni on Maria. Miten voisin auttaa sinua?</p>
                     </div>
                 </div>
-                <div class="chatbox__messages chatbox-content">
-                    <div class="bot-typing-container">
-                        <span class="typing-indicator">
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
+                <div class="chatbox__messages">
+
+                    <div class="col-3">
+                        <div class="snippet" data-title="dot-flashing">
+                          <div class="stage">
+                            <div class="dot-flashing"></div>
+                          </div>
                         </div>
-                    </div>
+                      </div>
+
                 </div>
                 <div class="chatbox__footer">
-                    <input type="text" placeholder="...">
-                    <button class="chatbox__send--footer send__button">Send</button>
+                    <input type="text" placeholder="Kirjoita viesti...">
+                    <button class="chatbox__send--footer send__button">Lähetä</button>
                 </div>
             </div>
             <div class="chatbox__button">
-                <button><img src="{{ url_for('static', filename='images/chatbox-icon.svg') }}" alt="Chat Icon" /></button>
+                <button><img src="{{ url_for('static', filename='images/chatbox-icon.svg') }}" /></button>
             </div>
         </div>
     </div>
@@ -43,12 +46,5 @@
         const SCRIPT_ROOT = {{ request.script_root|tojson }};
     </script>
     <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const chatbox = new Chatbox();
-            chatbox.display();
-        });
-    </script>
-    
 </body>
 </html>

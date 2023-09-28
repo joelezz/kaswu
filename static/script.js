@@ -8,20 +8,18 @@ class Chatbox {
 
         this.state = false;
         this.messages = [];
-
-        this.toggleState(this.args.chatBox);
-
+        this.messagesGenerated = false; // Initialize messagesGenerated here
     }
 
     display() {
-        const {openButton, chatBox, sendButton} = this.args;
+        const { openButton, chatBox, sendButton } = this.args;
 
         openButton.addEventListener('click', () => this.toggleState(chatBox))
 
         sendButton.addEventListener('click', () => this.onSendButton(chatBox))
 
         const node = chatBox.querySelector('input');
-        node.addEventListener("keyup", ({key}) => {
+        node.addEventListener("keyup", ({ key }) => {
             if (key === "Enter") {
                 this.onSendButton(chatBox)
             }
@@ -32,31 +30,61 @@ class Chatbox {
         this.state = !this.state;
 
         // show or hide the box
-        if(this.state) {
+        if (this.state) {
             chatbox.classList.add('chatbox--active')
         } else {
             chatbox.classList.remove('chatbox--active')
         }
     }
 
+    addTypingAnimation(chatbox) {
+        const messageContainer = chatbox.querySelector('.chatbox__messages');
+    
+        const animationSnippet = document.createElement('div');
+        animationSnippet.classList.add('snippet');
+        animationSnippet.classList.add('dot-flashing'); // Use your created animation class
+        animationSnippet.setAttribute('data-title', 'Bot is typing...');
+    
+        // Create a wrapper for the typing animation
+        const typingAnimationContainer = document.createElement('div');
+        typingAnimationContainer.classList.add('typing-animation-container');
+        typingAnimationContainer.appendChild(animationSnippet);
+    
+        messageContainer.appendChild(typingAnimationContainer);
+    
+        // Scroll to the bottom to keep the typing animation in view
+        messageContainer.scrollTop = messageContainer.scrollHeight;
+    }
+    
+    
+
+    removeTypingAnimation(chatbox) {
+        const messageContainer = chatbox.querySelector('.chatbox__messages');
+        const typingAnimation = messageContainer.querySelector('.dot-flashing');
+    
+        if (typingAnimation && typingAnimation.parentNode === messageContainer) {
+            messageContainer.removeChild(typingAnimation);
+        }
+    }
+    
+
     onSendButton(chatbox) {
         var textField = chatbox.querySelector('input');
-        let text1 = textField.value
+        let text1 = textField.value;
         if (text1 === "") {
             return;
         }
     
-        let msg1 = { name: "User", message: text1 }
+        let msg1 = { name: "User", message: text1 };
         this.messages.push(msg1);
     
-        // Lisää automaattinen viesti botilta alkuun
-        let msg2 = {
-            name: "Bot",
-            message: "Hei, olen täällä auttamassa sinuasaavuttamaan tavoitteesi niin työssä kuin vapaa-ajalla. Anna minulle tavoitteesi, ja ohjaan sinua kohti niiden saavuttamista muutamilla yhteydenotoilla ja henkilökohtaisella tuellani. Voit tutustua myös tietosuojaan <a href=\"https://openai.com/policies/privacy-policy\">OpenAI:n Tietosuojalomake</a>"
-        };
-        this.messages.unshift(msg2);
+        // Update the flag when a message is sent
+        this.messagesGenerated = true;
     
-        fetch('https://kaswu-botti.azurewebsites.net/predict', {
+        // Add animation before the Fetch request
+        this.addTypingAnimation(chatbox);
+    
+        fetch('http://127.0.0.1:5000/predict', {
             method: 'POST',
             body: JSON.stringify({ message: text1 }),
             mode: 'cors',
@@ -66,31 +94,30 @@ class Chatbox {
         })
             .then(r => r.json())
             .then(r => {
-                let msg3 = { name: "Bot", message: r.message };
-                this.messages.push(msg3);
-    
-                this.updateChatText(chatbox)
-                textField.value = ''
-    
-            }).catch((error) => {
+                let msg2 = { name: "Maria", message: r.message };
+                this.messages.push(msg2);
+                this.removeTypingAnimation(chatbox); // Remove animation after response
+                this.updateChatText(chatbox);
+                textField.value = '';
+            })
+            .catch((error) => {
                 console.error('Error:', error);
-                this.updateChatText(chatbox)
-                textField.value = ''
+                this.removeTypingAnimation(chatbox); // Remove animation on error
+                this.updateChatText(chatbox);
+                textField.value = '';
             });
     }
+    
 
     updateChatText(chatbox) {
         var html = '';
-        this.messages.slice().reverse().forEach(function(item, _index) {
-            if (item.name === "Bot")
-            {   
+        this.messages.slice().reverse().forEach(function (item, _index) {
+            if (item.name === "Maria") {
                 html += '<div class="messages__item messages__item--visitor">' + item.message + '</div>'
-            }
-            else
-            {
+            } else {
                 html += '<div class="messages__item messages__item--operator">' + item.message + '</div>'
             }
-          });
+        });
 
         const chatmessage = chatbox.querySelector('.chatbox__messages');
         chatmessage.innerHTML = html;
