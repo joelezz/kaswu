@@ -6,9 +6,11 @@ class Chatbox {
             sendButton: document.querySelector('.send__button')
         }
 
-        this.state = false;
+        this.state = true;
         this.messages = [];
         this.messagesGenerated = false; // Initialize messagesGenerated here
+
+        this.display(); // avaa chat ikkunan heti alkuun
     }
 
     display() {
@@ -24,6 +26,9 @@ class Chatbox {
                 this.onSendButton(chatBox)
             }
         })
+
+        // Lähetä ensimmäiset kaksi viestiä automaattisesti
+        this.sendInitialMessages(chatBox);
     }
 
     toggleState(chatbox) {
@@ -35,6 +40,20 @@ class Chatbox {
         } else {
             chatbox.classList.remove('chatbox--active')
         }
+    }
+
+    sendInitialMessages(chatbox) {
+        // Lähetä ensimmäinen viesti: Ohjeet käytöstä
+        const instructionsMessage = { name: "Maria", message: "Tervetuloa Maria-GPT chatbotiin! Voit käyttää minua kirjoittamalla viestejä tähän ikkunaan. Olen täällä auttamassa sinua." };
+        this.messages.push(instructionsMessage);
+        this.updateChatText(chatbox);
+
+        // Lähetä toinen viesti: Tietosuoja ja tavoitelomake
+        setTimeout(() => {
+            const privacyMessage = { name: "Maria", message: "Tietosuoja: Käytämme tietojasi vain keskustelun tarkoituksiin eikä niitä jaeta kolmansille osapuolille,  <a href=https://openai.com/policies/privacy-policy>OpenAI -tietosuojalomake.</a> . Tavoitelomakkeen löydät täältä: <a href=\"{google_forms}\">Tavoitelomake</a>." };
+            this.messages.push(privacyMessage);
+            this.updateChatText(chatbox);
+        }, 2000); // Odota 2 sekuntia ensimmäisen viestin jälkeen ja lähetä toinen viesti
     }
 
     addTypingAnimation(chatbox) {
