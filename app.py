@@ -7,8 +7,7 @@ flask_app = Flask(__name__)
 
 load_dotenv()
 google_forms = os.getenv("GOOGLE_FORMS")
-#openai.api_key = os.getenv("OPENAI_API_KEY")
-openai.api_key = "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"
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 @flask_app.route('/')
 def index():
