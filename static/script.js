@@ -14,9 +14,9 @@ class Chatbox {
     }
 
     display() {
-        const { openButton, chatBox, sendButton } = this.args;
+        const { chatBox, sendButton } = this.args;
 
-        openButton.addEventListener('click', () => this.toggleState(chatBox))
+        // Remove the event listener for opening the chatbox as it's always open
 
         sendButton.addEventListener('click', () => this.onSendButton(chatBox))
 
@@ -27,8 +27,9 @@ class Chatbox {
             }
         })
 
-        // Lähetä ensimmäiset kaksi viestiä automaattisesti
+        // Send the initial two messages automatically
         this.sendInitialMessages(chatBox);
+
     }
 
     toggleState(chatbox) {
@@ -58,20 +59,22 @@ class Chatbox {
 
     addTypingAnimation(chatbox) {
         const messageContainer = chatbox.querySelector('.chatbox__messages');
-    
+
+        // Create a new message node for the typing animation
+        const typingAnimationNode = document.createElement('div');
+        typingAnimationNode.classList.add('messages__item');
+        typingAnimationNode.classList.add('messages__item--typing');
+
         const animationSnippet = document.createElement('div');
         animationSnippet.classList.add('snippet');
-        animationSnippet.classList.add('dot-flashing'); // Use your created animation class
+        animationSnippet.classList.add('dot-flashing');
         animationSnippet.setAttribute('data-title', 'Bot is typing...');
-    
-        // Create a wrapper for the typing animation
-        const typingAnimationContainer = document.createElement('div');
-        typingAnimationContainer.classList.add('typing-animation-container');
-        typingAnimationContainer.appendChild(animationSnippet);
-    
-        messageContainer.appendChild(typingAnimationContainer);
-    
-        // Scroll to the bottom to keep the typing animation in view
+
+        typingAnimationNode.appendChild(animationSnippet);
+
+        messageContainer.appendChild(typingAnimationNode);
+
+        // Scroll to the bottom to keep the new message in view
         messageContainer.scrollTop = messageContainer.scrollHeight;
     }
     
