@@ -117,6 +117,14 @@ class Chatbox {
             headers: {
                 'Content-Type': 'application/json'
             },
+ 
+       /* fetch('127.0.0.1/predict', {
+            method: 'POST',
+            body: JSON.stringify({ message: text1 }),
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+                }, */
         })
             .then(r => r.json())
             .then(r => {
