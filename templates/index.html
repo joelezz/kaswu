@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+
     
     <title>Chatbot</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
@@ -19,21 +19,29 @@
                         <img src="{{ url_for('static', filename='images/kaswu.png') }}" alt="image">
                     </div>
                     <div class="chatbox__content--header">
-                        <h4 class="chatbox__heading--header">MariaGPT -chat avustaja</h4>
-                        <p class="chatbox__description--header">Hei. Nimeni on Maria. Miten voisin auttaa sinua?</p>
+                            <h4 class="chatbox__heading--header">MariaGPT -chat avustaja</h4>
+                            <p class="chatbox__description--header">Hei. Nimeni on Maria. Miten voisin auttaa sinua?</p>
                     </div>
                 </div>
+                
                 <div class="chatbox__messages">
 
-                    <div class="col-3">
-                        <div class="snippet" data-title="dot-flashing">
-                          <div class="stage">
-                            <div class="dot-flashing"></div>
-                          </div>
-                        </div>
-                      </div>
+                    <div class="typing-animation-container">
+                        <div class="dot-flashing"></div>
+                        <div class="dot-flashing"></div>
+                        <div class="dot-flashing"></div>
 
+                        <div class="col-3">
+                            <div class="snippet dot-flashing" data-title="Bot is typing...">
+                              <div class="stage">
+                                <div class="dot-flashing"></div>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                    
                 </div>
+                
                 <div class="chatbox__footer">
                     <input type="text" placeholder="Kirjoita viesti...">
                     <button class="chatbox__send--footer send__button">Lähetä</button>

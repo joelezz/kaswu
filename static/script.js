@@ -48,6 +48,7 @@ class Chatbox {
         const instructionsMessage = { name: "Maria", message: "Tervetuloa Maria-GPT chatbotiin! Voit käyttää minua kirjoittamalla viestejä tähän ikkunaan. Olen täällä auttamassa sinua." };
         this.messages.push(instructionsMessage);
         this.updateChatText(chatbox);
+        this.addTypingAnimation(chatbox)
 
         // Lähetä toinen viesti: Tietosuoja ja tavoitelomake
         setTimeout(() => {
@@ -63,7 +64,9 @@ class Chatbox {
         // Create a new message node for the typing animation
         const typingAnimationNode = document.createElement('div');
         typingAnimationNode.classList.add('messages__item');
+
         typingAnimationNode.classList.add('messages__item--typing');
+
 
         const animationSnippet = document.createElement('div');
         animationSnippet.classList.add('snippet');
@@ -105,8 +108,9 @@ class Chatbox {
     
         // Add animation before the Fetch request
         this.addTypingAnimation(chatbox);
+
     
-        fetch('https://kaswu-botti.azurewebsites.net/predict', {
+        fetch('http://127.0.0.1:5000/predict', {
             method: 'POST',
             body: JSON.stringify({ message: text1 }),
             mode: 'cors',
@@ -130,10 +134,11 @@ class Chatbox {
             });
     }
     
+    
 
     updateChatText(chatbox) {
         var html = '';
-        this.messages.slice().reverse().forEach(function (item, _index) {
+        this.messages.slice().forEach(function (item, _index) {
             if (item.name === "Maria") {
                 html += '<div class="messages__item messages__item--visitor">' + item.message + '</div>'
             } else {
@@ -143,8 +148,41 @@ class Chatbox {
 
         const chatmessage = chatbox.querySelector('.chatbox__messages');
         chatmessage.innerHTML = html;
+
+        const snippets = document.querySelectorAll('.snippet');
+
+for (let i = 0; i < snippets.length; i++) {
+  snippets[i].addEventListener('mouseleave', clearTooltip);
+  snippets[i].addEventListener('blur', clearTooltip);
+}
+
+function showTooltip(el, msg) {
+  el.setAttribute('class', 'snippet tooltip');
+  el.setAttribute('aria-label', msg);
+}
+
+function clearTooltip(e) {
+  e.currentTarget.setAttribute('class', 'snippet');
+  e.currentTarget.removeAttribute('aria-label');
+}
+
+const clipboardSnippets = new ClipboardJS('.snippet', {
+  text: trigger => trigger.getAttribute('data-title')
+});
+
+clipboardSnippets.on('success', e => {
+  e.clearSelection();
+  showTooltip(e.trigger, 'Copied!');
+});
+
+clipboardSnippets.on('error', e => {
+  showTooltip(e.trigger, 'Copy failed!');
+});
+
     }
 }
 
+
+
+
 const chatbox = new Chatbox();
-chatbox.display();
