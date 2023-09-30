@@ -23,9 +23,15 @@ body {
 =============== */
 .chatbox {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    width: 100%; /* Occupy the full width of the screen */
+    height: 100%; /* Occupy the full height of the screen */
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    right: 0;
+    bottom: 0;
 }
+
 
 /* CONTENT IS CLOSE */
 .chatbox__support {
@@ -33,10 +39,11 @@ body {
     flex-direction: column;
     background: #eee;
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     z-index: -123456;
     opacity: 1;
     transition: all .5s ease-in-out;
+    top:auto;
 }
 
 /* CONTENT ISOPEN */
@@ -74,6 +81,7 @@ body {
     display: block;
     overflow-y: scroll;
     flex-direction: column-reverse;
+    flex-grow: 1;
 }
 
 .messages__item {
@@ -201,7 +209,7 @@ body {
 
 .messages__item {
     margin-top: 10px;
-    background: #E0E0E0;
+    background: #e0e0e0;
     padding: 8px 12px;
     max-width: 70%;
 }
@@ -267,11 +275,35 @@ body {
     background: white;
     border: none;
     outline: none;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-    border-bottom-left-radius: 50px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     right: 0;
     bottom: 0;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    /* Adjust styles for screens with a maximum width of 768px */
+    .chatbox {
+        width: 90%; /* Reduce the width to 90% of the screen */
+        height: auto; /* Allow the height to adapt based on content */
+        border-radius: 10px; /* Add rounded corners */
+        bottom: 10px; /* Adjust the bottom position */
+    }
+
+    /* Adjust other styles as needed for smaller screens */
+}
+
+/* Additional Media Queries for Different Screen Sizes */
+@media (max-width: 480px) {
+    /* Adjust styles for screens with a maximum width of 480px */
+    .chatbox {
+        width: 95%; /* Reduce the width to 95% of the screen */
+        bottom: 5px; /* Further adjust the bottom position */
+    }
+
+    /* Adjust other styles as needed for smaller screens */
 }
