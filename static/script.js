@@ -110,7 +110,7 @@ class Chatbox {
         this.addTypingAnimation(chatbox);
 
     
-        fetch('https://kaswu-botti.azurewebsites.net/predict', {
+        fetch('https://mariagpt.azurewebsites.net/predict', {
             method: 'POST',
             body: JSON.stringify({ message: text1 }),
             mode: 'cors',
@@ -118,7 +118,7 @@ class Chatbox {
                 'Content-Type': 'application/json'
             },
  
-       /* fetch('127.0.0.1/predict', {
+       /* fetch('http://127.0.0.1:5000/predict', {
             method: 'POST',
             body: JSON.stringify({ message: text1 }),
             mode: 'cors',
