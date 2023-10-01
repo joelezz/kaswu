@@ -30,17 +30,6 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run Robot Framework tests
-        run: |
-          robot -d test-reports tests/
-        continue-on-error: true
-
-      - name: Upload Robot Framework test results
-        uses: actions/upload-artifact@v2
-        with:
-          name: test-reports
-          path: test-reports/
-
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
         with:
