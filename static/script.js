@@ -4,32 +4,27 @@ class Chatbox {
             openButton: document.querySelector('.chatbox__button'),
             chatBox: document.querySelector('.chatbox__support'),
             sendButton: document.querySelector('.send__button')
-        }
+        };
 
         this.state = true;
         this.messages = [];
-        this.messagesGenerated = false; // Initialize messagesGenerated here
+        this.messagesGenerated = false;
 
-        this.display(); // avaa chat ikkunan heti alkuun
+        this.init();
     }
 
-    display() {
+    init() {
         const { chatBox, sendButton } = this.args;
-
-        // Remove the event listener for opening the chatbox as it's always open
-
-        sendButton.addEventListener('click', () => this.onSendButton(chatBox))
+        sendButton.addEventListener('click', () => this.onSendButton(chatBox));
 
         const node = chatBox.querySelector('input');
         node.addEventListener("keyup", ({ key }) => {
             if (key === "Enter") {
-                this.onSendButton(chatBox)
+                this.onSendButton(chatBox);
             }
-        })
+        });
 
-        // Send the initial two messages automatically
         this.sendInitialMessages(chatBox);
-
     }
 
     toggleState(chatbox) {
@@ -153,19 +148,16 @@ class Chatbox {
     
 
     updateChatText(chatbox) {
-        var html = '';
-        this.messages.slice().forEach(function (item, _index) {
-            if (item.name === "Maria") {
-                html += '<div class="messages__item messages__item--visitor">' + item.message + '</div>'
-            } else {
-                html += '<div class="messages__item messages__item--operator">' + item.message + '</div>'
-            }
-        });
-
         const chatmessage = chatbox.querySelector('.chatbox__messages');
         chatmessage.scrollTop = chatmessage.scrollHeight;
-        chatmessage.innerHTML = html;
 
+        const html = this.messages.map(item => `
+            <div class="messages__item messages__item--${item.name.toLowerCase()}">
+                ${item.message}
+            </div>
+        `).join('');
+
+        chatmessage.innerHTML = html;
     }
 }
 
