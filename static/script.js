@@ -110,7 +110,7 @@ class Chatbox {
         this.addTypingAnimation(chatbox);
 
     
-        fetch('https://mariagpt.onrender.com/predict', {
+        fetch('https://mariagpt1.azurewebsites.net/predict', {
             method: 'POST',
             body: JSON.stringify({ message: text1 }),
             mode: 'cors',
@@ -155,6 +155,7 @@ class Chatbox {
         });
 
         const chatmessage = chatbox.querySelector('.chatbox__messages');
+        chatmessage.scrollTop = chatmessage.scrollHeight;
         chatmessage.innerHTML = html;
 
     }
