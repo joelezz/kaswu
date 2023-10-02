@@ -82,7 +82,7 @@ body {
 .chatbox__messages {
     margin-top: 10;
     display: block;
-    overflow-y: scroll;
+    overflow-y: auto;
     flex-direction: column-reverse;
     flex-grow: 1;
 }
@@ -297,7 +297,7 @@ body {
     cursor: pointer;
     right: 0;
     bottom: 0;
-    font-size: 2rem;
+    font-size: 1.7rem;
 }
 
 /* Media Queries for Responsive Design */
@@ -308,7 +308,7 @@ body {
         height: auto; /* Allow the height to adapt based on content */
         border-radius: 10px; /* Add rounded corners */
         bottom: 10px; /* Adjust the bottom position */
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
 
     /* Adjust other styles as needed for smaller screens */
@@ -322,9 +322,6 @@ body {
         bottom: 5px; /* Further adjust the bottom position */
         font-size: 1.5rem;
     }
-.chatbox__heading--header {
-    font-size: 2rem;
-    color: white;
-}
+
     /* Adjust other styles as needed for smaller screens */
 }
