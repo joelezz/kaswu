@@ -62,5 +62,5 @@ jobs:
         id: deploy-to-webapp
         with:
           app-name: 'mariagpt'
-          slot-name: 'Production'
+          slot-name: 'PRODUCTION'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B4EB185B5CB649B3A2825365F5D2AB08 }}

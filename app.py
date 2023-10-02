@@ -7,7 +7,7 @@ flask_app = Flask(__name__)
 
 load_dotenv()
 google_forms = os.getenv("GOOGLE_FORMS")
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 @flask_app.route('/')
 def index():
@@ -47,6 +47,6 @@ def predict():
     return jsonify({"message": reply})
        
 if __name__ == '__main__':
-    flask_app.run(host="0.0.0.0", port=8000)
-    #flask_app.run(host="127.0.0.1", port=5000)
+    #flask_app.run(host="0.0.0.0", port=8000)
+    flask_app.run(host="127.0.0.1", port=5000)
 
