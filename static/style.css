@@ -297,7 +297,7 @@ body {
     cursor: pointer;
     right: 0;
     bottom: 0;
-    font-size: 2rem;
+    font-size: 1.7rem;
 }
 
 /* Media Queries for Responsive Design */
@@ -308,7 +308,7 @@ body {
         height: auto; /* Allow the height to adapt based on content */
         border-radius: 10px; /* Add rounded corners */
         bottom: 10px; /* Adjust the bottom position */
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
 
     /* Adjust other styles as needed for smaller screens */
@@ -320,7 +320,7 @@ body {
     .chatbox {
         width: 95%; /* Reduce the width to 95% of the screen */
         bottom: 5px; /* Further adjust the bottom position */
-        font-size: 2.5rem;
+        font-size: 1.5rem;
     }
 
     /* Adjust other styles as needed for smaller screens */
