@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Chatbot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KASWU - MariaGPT</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -19,8 +20,9 @@
                     </div>
                 </div>
                 <div class="chatbox__messages chatbox-content">
-                    <div class="bot-typing-container">
-                        <span class="typing-animation" id="typing-animation">...</div>
+                    <div class="messages__item--operator">
+                        <div class="animation" id="animation"></div>
+                        <div class="dots">...</div>
                     </div>
                 </div>
                 <div class="chatbox__footer">
@@ -38,12 +40,6 @@
         const SCRIPT_ROOT = {{ request.script_root|tojson }};
     </script>
     <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const chatbox = new Chatbox();
-            chatbox.display();
-        });
-    </script>
     
 </body>
 </html>

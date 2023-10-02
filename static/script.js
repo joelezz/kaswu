@@ -8,10 +8,6 @@ class Chatbox {
 
         this.state = false;
         this.messages = [];
-
-        this.toggleState(this.args.chatBox);
-
-
     }
 
     display() {
@@ -32,7 +28,7 @@ class Chatbox {
     toggleState(chatbox) {
         this.state = !this.state;
 
-        // show or hide the box
+        // show or hides the box
         if(this.state) {
             chatbox.classList.add('chatbox--active')
         } else {
@@ -47,27 +43,23 @@ class Chatbox {
             return;
         }
     
-        let msg = { name: "User", message: text1 }
-        this.messages.push(msg);
-
-            // Lisää kirjoitusanimaatio botin viestiin
-        let msg1 = {
-            name: "Bot",
-            message: "<span class='typing-animation'></span>"
-        };
-        this.messages.push(msg1);
-
-        this.updateChatText(chatbox);
-        textField.value = '';
+        // Luo viesti-elementti
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('generated-message');
+        messageElement.textContent = text1;
     
-        // Lisää automaattinen viesti botilta alkuun
-        let msg2 = {
-            name: "Bot",
-            message: "Hei, olen Maria OpenAI:n ChatGPT:n tehostama apuri. Autan sinua saavuttamaan tavoitteesi tällä voit aloittaa esimerkiksi täyttämällä: \'<a href=\"{google_forms}\">Tavoitelomake</a>\' tai voidaan jutella vielä lisää, mutta voit kysyä minulta aina lomakkeesta, niin lähetän sen sinulle. Voit tutustua myös <a href=\"https://openai.com/policies/privacy-policy\">OpenAI:n Tietosuojalomakkeeseen</a>"
-        };
-        this.messages.unshift(msg2);
-
-        fetch('https://kaswu-botti.azurewebsites.net/predict', {
+        // Lisää viesti DOM:iin
+        chatbox.appendChild(messageElement);
+    
+        // Aktivoi animaatio chatbotin vastaukselle
+        messageElement.classList.add('animate');
+    
+        // Aseta viesti näkyväksi ja piilota input-kenttä
+        messageElement.style.display = 'block';
+        textField.style.display = 'none';
+    
+        // Tee Fetch-pyyntö chatbotille
+        fetch('http://127.0.0.1:5000/predict', {
             method: 'POST',
             body: JSON.stringify({ message: text1 }),
             mode: 'cors',
@@ -75,38 +67,33 @@ class Chatbox {
                 'Content-Type': 'application/json'
             },
         })
-            .then(r => r.json())
-
-            .then(r => {
-                let msg3 = { name: "Bot", message: r.message };
-                    textField.value = ''
-
-            setTimeout(() => {
-                this.messages.pop(); // Poista kirjoitusanimaatio
-                this.updateChatText(chatbox);
-        
-                this.messages.push(msg3);
-                this.updateChatText(chatbox);
-            }, 3000); // 3 sekunnin viive
-                
+        .then(r => r.json())
+        .then(r => {
+            let msg2 = { name: "Maria", message: r.message };
+            this.messages.push(msg2);
+            this.updateChatText(chatbox)
+            textField.value = ''
     
-            })
-            
-            .catch((error) => {
-                console.error('Error:', error);
-                this.updateChatText(chatbox)
-                textField.value = ''
-            });
-
-            
-        }
+            // Tässä voit lisätä chatbotin vastauksen näyttämisen käyttöliittymässä
+            const botResponseElement = document.createElement('div');
+            botResponseElement.classList.add('messages__item', 'messages__item--operator');
+            botResponseElement.textContent = r.message;
+            chatbox.appendChild(botResponseElement);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            this.updateChatText(chatbox)
+            textField.value = ''
+        });
+    }
+    
     
 
     updateChatText(chatbox) {
         var html = '';
         this.messages.slice().reverse().forEach(function(item, _index) {
-            if (item.name === "Bot")
-            {   
+            if (item.name === "Maria")
+            {
                 html += '<div class="messages__item messages__item--visitor">' + item.message + '</div>'
             }
             else
@@ -119,6 +106,7 @@ class Chatbox {
         chatmessage.innerHTML = html;
     }
 }
+
 
 const chatbox = new Chatbox();
 chatbox.display();
