@@ -110,7 +110,7 @@ class Chatbox {
         this.addTypingAnimation(chatbox);
 
     
-        fetch('https://mariagpt.onrender.com//predict', {
+        fetch('https://mariagpt.onrender.com/predict', {
             method: 'POST',
             body: JSON.stringify({ message: text1 }),
             mode: 'cors',
