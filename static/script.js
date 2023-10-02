@@ -4,27 +4,32 @@ class Chatbox {
             openButton: document.querySelector('.chatbox__button'),
             chatBox: document.querySelector('.chatbox__support'),
             sendButton: document.querySelector('.send__button')
-        };
+        }
 
         this.state = true;
         this.messages = [];
-        this.messagesGenerated = false;
+        this.messagesGenerated = false; // Initialize messagesGenerated here
 
-        this.init();
+        this.display(); // avaa chat ikkunan heti alkuun
     }
 
-    init() {
+    display() {
         const { chatBox, sendButton } = this.args;
-        sendButton.addEventListener('click', () => this.onSendButton(chatBox));
+
+        // Remove the event listener for opening the chatbox as it's always open
+
+        sendButton.addEventListener('click', () => this.onSendButton(chatBox))
 
         const node = chatBox.querySelector('input');
         node.addEventListener("keyup", ({ key }) => {
             if (key === "Enter") {
-                this.onSendButton(chatBox);
+                this.onSendButton(chatBox)
             }
-        });
+        })
 
+        // Send the initial two messages automatically
         this.sendInitialMessages(chatBox);
+
     }
 
     toggleState(chatbox) {
@@ -105,7 +110,7 @@ class Chatbox {
         this.addTypingAnimation(chatbox);
 
     
-        fetch('https://mariagpt.azurewebsites.net/predict', {
+       fetch('https://mariagpt.azurewebsites.net/predict', {
             method: 'POST',
             body: JSON.stringify({ message: text1 }),
             mode: 'cors',
@@ -113,23 +118,15 @@ class Chatbox {
                 'Content-Type': 'application/json'
             },
  
-       /* fetch('http://127.0.0.1:5000/predict', {
+      /* fetch('http://127.0.0.1:5000/predict', {
             method: 'POST',
             body: JSON.stringify({ message: text1 }),
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'
-                },*/
+                }, */
         }) 
-            .then(r => {
-                if (!Response.ok) {
-                throw new Error('Network response was not ok')
-            }
-                return r.json();
-                
-        })
-
-                            
+            .then(r => r.json())
             .then(r => {
                 let msg2 = { name: "Maria", message: r.message };
                 this.messages.push(msg2);
@@ -148,16 +145,19 @@ class Chatbox {
     
 
     updateChatText(chatbox) {
+        var html = '';
+        this.messages.slice().forEach(function (item, _index) {
+            if (item.name === "Maria") {
+                html += '<div class="messages__item messages__item--visitor">' + item.message + '</div>'
+            } else {
+                html += '<div class="messages__item messages__item--operator">' + item.message + '</div>'
+            }
+        });
+
         const chatmessage = chatbox.querySelector('.chatbox__messages');
         chatmessage.scrollTop = chatmessage.scrollHeight;
-
-        const html = this.messages.map(item => `
-            <div class="messages__item messages__item--${item.name.toLowerCase()}">
-                ${item.message}
-            </div>
-        `).join('');
-
         chatmessage.innerHTML = html;
+
     }
 }
 
