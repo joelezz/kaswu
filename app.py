@@ -5,7 +5,8 @@ import os
 from dotenv import load_dotenv
 
 app = Flask(__name__)
-CORS(app)
+
+CORS(app, resources={r"/*": {"origins": "*"}}) # CORS allows requests from all origins during development
 
 load_dotenv()
 google_forms = os.getenv("GOOGLE_FORMS")
