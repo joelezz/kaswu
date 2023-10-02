@@ -320,8 +320,11 @@ body {
     .chatbox {
         width: 95%; /* Reduce the width to 95% of the screen */
         bottom: 5px; /* Further adjust the bottom position */
-        font-size: 2.5rem;
+        font-size: 1.5rem;
     }
-
+.chatbox__heading--header {
+    font-size: 2rem;
+    color: white;
+}
     /* Adjust other styles as needed for smaller screens */
 }
