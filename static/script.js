@@ -126,7 +126,15 @@ class Chatbox {
                 'Content-Type': 'application/json'
                 },*/
         }) 
-            .then(r => r.json())
+            .then(r => {
+                if (!Response.ok) {
+                throw new Error('Network response was not ok')
+            }
+                return r.json();
+                
+        })
+
+                            
             .then(r => {
                 let msg2 = { name: "Maria", message: r.message };
                 this.messages.push(msg2);
