@@ -126,8 +126,14 @@ class Chatbox {
                 'Content-Type': 'application/json'
                 }, */
         }) 
-            .then(r => r.json())
             .then(r => {
+                console.log('Response:', r); // Add this line
+                return r.json();
+
+            })
+
+            .then(r => {
+
                 let msg2 = { name: "Maria", message: r.message };
                 this.messages.push(msg2);
                 this.removeTypingAnimation(chatbox); // Remove animation after response
