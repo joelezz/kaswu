@@ -82,7 +82,7 @@ body {
 .chatbox__messages {
     margin-top: 10;
     display: block;
-    overflow-y: scroll;
+    overflow-y: auto;
     flex-direction: column-reverse;
     flex-grow: 1;
 }

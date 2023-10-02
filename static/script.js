@@ -155,6 +155,7 @@ class Chatbox {
         });
 
         const chatmessage = chatbox.querySelector('.chatbox__messages');
+        chatmessage.scrollTop = chatmessage.scrollHeight;
         chatmessage.innerHTML = html;
 
     }
