@@ -3,10 +3,13 @@ from flask_cors import CORS
 import openai
 import os
 from dotenv import load_dotenv
+import logging
 
 app = Flask(__name__)
 
 CORS(app, resources={r"/*": {"origins": "*"}}) # CORS allows requests from all origins during development
+logging.getLogger('flask_cors').level = logging.DEBUG
+
 
 load_dotenv()
 google_forms = os.getenv("GOOGLE_FORMS")
