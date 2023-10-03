@@ -7,7 +7,7 @@ import logging
 
 app = Flask(__name__)
 
-CORS(app, resources={r"/*": {"origins": "*"}}) # CORS allows requests from all origins during development
+#CORS(app, resources={r"/*": {"origins": "*"}}) # CORS allows requests from all origins during development
 logging.getLogger('flask_cors').level = logging.DEBUG
 
 
