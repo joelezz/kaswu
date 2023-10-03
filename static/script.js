@@ -110,19 +110,20 @@ class Chatbox {
         this.addTypingAnimation(chatbox);
 
     
-        fetch('https://mariagpt.azurewebsites.net/predict', {
-    method: 'POST',
-    body: JSON.stringify({ message: text1 }),
-    mode: 'cors',
-    headers: {
-        'Content-Type': 'application/json'
+    fetch('https://mariagpt.azurewebsites.net/predict', {
+        method: 'POST',
+        body: JSON.stringify({ message: text1 }),
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
     },
 })
         .then(r => {
             if (!r.ok) {
-                throw new Error('Network response was not ok');
+                console.error('Network response status:', r.status);
+                throw new Error("Network error not ok");
             }
-            return r.text(); // Read the response as text
+            return r.json(); // Read the response as text
         })
         .then(responseText => {
             console.log('Response Text:', responseText); // Log the response text
