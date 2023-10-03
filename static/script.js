@@ -110,42 +110,42 @@ class Chatbox {
         this.addTypingAnimation(chatbox);
 
     
-       fetch('https://mariagpt.azurewebsites.net/predict', {
+        fetch('https://mariagpt.azurewebsites.net/predict', {
             method: 'POST',
             body: JSON.stringify({ message: text1 }),
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'
             },
- 
-      /* fetch('http://127.0.0.1:5000/predict', {
-            method: 'POST',
-            body: JSON.stringify({ message: text1 }),
-            mode: 'cors',
-            headers: {
-                'Content-Type': 'application/json'
-                }, */
-        }) 
-            .then(r => {
-                console.log('Response:', r); // Add this line
-                return r.json();
-
-            })
-
-            .then(r => {
-
-                let msg2 = { name: "Maria", message: r.message };
+        })
+        .then(r => {
+            if (!r.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return r.json(); // This line is important
+        })
+        .then(responseData => {
+            // Check if the responseData is valid JSON
+            if (typeof responseData === 'object' && responseData !== null) {
+                let msg2 = { name: "Maria", message: responseData.message };
                 this.messages.push(msg2);
-                this.removeTypingAnimation(chatbox); // Remove animation after response
-                this.updateChatText(chatbox);
-                textField.value = '';
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                this.removeTypingAnimation(chatbox); // Remove animation on error
-                this.updateChatText(chatbox);
-                textField.value = '';
-            });
+            } else {
+                // Handle the case where responseData is not valid JSON
+                console.error('Invalid JSON response:', responseData);
+                // You can decide how to handle this case
+            }
+        
+            this.removeTypingAnimation(chatbox);
+            this.updateChatText(chatbox);
+            textField.value = '';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            this.removeTypingAnimation(chatbox); // Remove animation on error
+            this.updateChatText(chatbox);
+            textField.value = '';
+        });
+
     }
     
     
