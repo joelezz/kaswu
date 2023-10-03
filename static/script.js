@@ -111,18 +111,23 @@ class Chatbox {
 
     
         fetch('https://mariagpt.azurewebsites.net/predict', {
-            method: 'POST',
-            body: JSON.stringify({ message: text1 }),
-            mode: 'cors',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        })
+    method: 'POST',
+    body: JSON.stringify({ message: text1 }),
+    mode: 'cors',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+})
         .then(r => {
             if (!r.ok) {
                 throw new Error('Network response was not ok');
             }
-            return r.json(); // This line is important
+            return r.text(); // Read the response as text
+        })
+        .then(responseText => {
+            console.log('Response Text:', responseText); // Log the response text
+            // Now try parsing it as JSON
+            return JSON.parse(responseText);
         })
         .then(responseData => {
             // Check if the responseData is valid JSON
