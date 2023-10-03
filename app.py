@@ -7,8 +7,7 @@ import logging
 
 app = Flask(__name__)
 
-#CORS(app, resources={r"/*": {"origins": "*"}}) # CORS allows requests from all origins during development
-logging.getLogger('flask_cors').level = logging.DEBUG
+CORS(app, resources={r"/*": {"origins": "*"}}) # CORS allows requests from all origins during development
 
 
 load_dotenv()
@@ -53,6 +52,6 @@ def predict():
     return jsonify({"message": reply})
        
 if __name__ == '__main__':
-    app.run()#host="0.0.0.0", port=8000)
+    app.run(host="0.0.0.0", port=8000)
     #app.run(host="127.0.0.1", port=5000)
 

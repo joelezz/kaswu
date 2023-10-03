@@ -52,7 +52,7 @@ class Chatbox {
 
         // Lähetä toinen viesti: Tietosuoja ja tavoitelomake
         setTimeout(() => {
-            const privacyMessage = { name: "Maria", message: "Tietosuoja: Käytämme tietojasi vain keskustelun tarkoituksiin eikä niitä jaeta kolmansille osapuolille,  <a href=https://openai.com/policies/privacy-policy>OpenAI -tietosuojalomake.</a> Tavoitelomakkeen löydät täältä: <a href=\"{google_forms}\">Tavoitelomake</a>." };
+            const privacyMessage = { name: "Maria", message: "Tietosuoja: Käytämme tietojasi vain keskustelun tarkoituksiin eikä niitä jaeta kolmansille osapuolille,  <a href=https://openai.com/policies/privacy-policy>OpenAI -tietosuojalomake.</a> . Tavoitelomakkeen löydät täältä: <a href=\"{google_forms}\">Tavoitelomake</a>." };
             this.messages.push(privacyMessage);
             this.updateChatText(chatbox);
         }, 2000); // Odota 2 sekuntia ensimmäisen viestin jälkeen ja lähetä toinen viesti
@@ -117,30 +117,30 @@ class Chatbox {
             headers: {
                 'Content-Type': 'application/json'
             },
+ 
+       /* fetch('127.0.0.1/predict', {
+            method: 'POST',
+            body: JSON.stringify({ message: text1 }),
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+                }, */
         })
+            .then(r => r.json())
             .then(r => {
-                if (!r.ok) {
-                    console.error('Network response status:', r.status);
-                    throw new Error("Network error not ok");
-                }
-                return r.json(); // Parse the response as JSON
-            })
-            .then(responseData => {
-                let msg2 = { name: "Maria", message: responseData.message };
+                let msg2 = { name: "Maria", message: r.message };
                 this.messages.push(msg2);
-        
-                this.removeTypingAnimation(chatbox);
+                this.removeTypingAnimation(chatbox); // Remove animation after response
                 this.updateChatText(chatbox);
                 textField.value = '';
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error('Error:', error);
                 this.removeTypingAnimation(chatbox); // Remove animation on error
                 this.updateChatText(chatbox);
                 textField.value = '';
             });
-
-        }
+    }
     
     
 
@@ -155,7 +155,6 @@ class Chatbox {
         });
 
         const chatmessage = chatbox.querySelector('.chatbox__messages');
-        chatmessage.scrollTop = chatmessage.scrollHeight;
         chatmessage.innerHTML = html;
 
     }
