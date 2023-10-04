@@ -48,8 +48,7 @@ def predict():
     )
 
     reply = response.choices[0].message['content']
-        if google_forms_reply in reply:    
-            reply = reply.replace(f"[Tavoitelomake]({google_forms})", google_forms_link)
+    reply = reply.replace(f"[Tavoitelomake]({google_forms})", google_forms_link)
 
     return jsonify({"message": reply})
 
