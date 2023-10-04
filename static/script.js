@@ -173,9 +173,6 @@ class Chatbox {
 
     }
     
-    function scrollToBottom() {
-        chatBox.scrollTop = chatBox.scrollHeight;
-    }
 }
 
 const chatbox = new Chatbox();
