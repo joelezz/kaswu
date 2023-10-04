@@ -15,7 +15,7 @@ google_forms = os.getenv("GOOGLE_FORMS")
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 google_forms_reply = "[Tavoitelomake](https://docs.google.com/forms/d/e/1FAIpQLSeWO15gmTC3-m7fYRA90C7l_2CUKKqXJxqJ3t_E_UHAIQjT4A/viewform?usp=pp_url)"
-
+google_forms_link = f"<a href='{google_forms}'>Tavoitelomake</a>"
 
 @app.route('/')
 def index():
@@ -48,6 +48,8 @@ def predict():
     )
 
     reply = response.choices[0].message['content']
+        if google_forms_reply in reply:    
+            reply = reply.replace(f"[Tavoitelomake]({google_forms})", google_forms_link)
 
     return jsonify({"message": reply})
 
