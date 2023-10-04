@@ -144,7 +144,7 @@ class Chatbox {
     
     
 
-    updateChatText(chatbox) {
+updateChatText(chatbox) {
         var html = '';
         this.messages.slice().forEach(function (item, _index) {
             if (item.name === "Maria") {
@@ -153,6 +153,13 @@ class Chatbox {
                 html += '<div class="messages__item messages__item--operator">' + item.message + '</div>'
             }
         });
+
+        const chatmessage = chatbox.querySelector('.chatbox__messages');
+        chatmessage.innerHTML = html; // Päivitä chat-ikkunan sisältö
+
+        // Scrollaa alareunaan pitääksesi uusimman viestin näkyvissä
+        chatmessage.scrollTop = chatmessage.scrollHeight;
+    }
 
         const chatmessage = chatbox.querySelector('.chatbox__messages');
         chatmessage.innerHTML = html;
