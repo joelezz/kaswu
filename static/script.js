@@ -52,7 +52,7 @@ class Chatbox {
 
         // Lähetä toinen viesti: Tietosuoja ja tavoitelomake
         setTimeout(() => {
-            const privacyMessage = { name: "Maria", message: "Tietosuoja: Käytämme tietojasi vain keskustelun tarkoituksiin eikä niitä jaeta kolmansille osapuolille,  <a href=https://openai.com/policies/privacy-policy>OpenAI -tietosuojalomake.</a> Tavoitelomakkeen löydät täältä: <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSeWO15gmTC3-m7fYRA90C7l_2CUKKqXJxqJ3t_E_UHAIQjT4A/viewform\">Tavoitelomake</a>." };
+            const privacyMessage = { name: "Maria", message: "Tietosuoja: Käytämme tietojasi vain keskustelun tarkoituksiin eikä niitä jaeta kolmansille osapuolille,  <a href=https://openai.com/policies/privacy-policy>OpenAI -tietosuojalomake.</a> . Tavoitelomakkeen löydät täältä: <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSeWO15gmTC3-m7fYRA90C7l_2CUKKqXJxqJ3t_E_UHAIQjT4A/viewform\">Tavoitelomake</a>." };
             this.messages.push(privacyMessage);
             this.updateChatText(chatbox);
         }, 2000); // Odota 2 sekuntia ensimmäisen viestin jälkeen ja lähetä toinen viesti
@@ -130,10 +130,10 @@ class Chatbox {
             .then(r => {
                 let msg2 = { name: "Maria", message: r.message };
                 this.messages.push(msg2);
-                this.removeTypingAnimation(chatbox); // Poista animaatio vastauksen jälkeen
-                this.updateChatText(chatbox); // Päivitä chat-ikkuna uudella viestillä
+                this.removeTypingAnimation(chatbox); // Remove animation after response
+                this.updateChatText(chatbox);
                 textField.value = '';
-                })
+            })
             .catch((error) => {
                 console.error('Error:', error);
                 this.removeTypingAnimation(chatbox); // Remove animation on error
@@ -144,7 +144,7 @@ class Chatbox {
     
     
 
-updateChatText(chatbox) {
+    updateChatText(chatbox) {
         var html = '';
         this.messages.slice().forEach(function (item, _index) {
             if (item.name === "Maria") {
@@ -155,11 +155,7 @@ updateChatText(chatbox) {
         });
 
         const chatmessage = chatbox.querySelector('.chatbox__messages');
-        chatmessage.innerHTML = html; // Päivitä chat-ikkunan sisältö
-
-        // Scrollaa alareunaan pitääksesi uusimman viestin näkyvissä
-        chatmessage.scrollTop = chatmessage.scrollHeight;
-    }
+        chatmessage.innerHTML = html;
 
     }
 }
