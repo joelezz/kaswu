@@ -60,7 +60,7 @@ class Chatbox {
                          // Lähetä kolmas viesti: palautelomake
         setTimeout(() => {
             const feedbackMessage = { name: "Maria", message: "Voit antaa myös <a href=\"https://docs.google.com/forms/d/1LJKHvTAu44Bb3f2iLKQyydiQGfbhRXEu83QThBr-mlE\">palautetta.</a>" };
-            this.messages.push(privacyMessage);
+            this.messages.push(feedbackMessage);
             this.updateChatText(chatbox);
         }, 3000); // Odota 3 sekuntia ensimmäisen viestin jälkeen ja lähetä kolmas viesti
     }
