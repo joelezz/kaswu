@@ -9,8 +9,6 @@ class Chatbox {
         this.state = true;
         this.messages = [];
         this.messagesGenerated = false; // Initialize messagesGenerated here
-        this.chatBox = document.querySelector('.chatbox__messages'); // Define chatBox here
-
 
         this.display(); // avaa chat ikkunan heti alkuun
     }
@@ -58,13 +56,6 @@ class Chatbox {
             this.messages.push(privacyMessage);
             this.updateChatText(chatbox);
         }, 2000); // Odota 2 sekuntia ensimmäisen viestin jälkeen ja lähetä toinen viesti
-
-         // Lähetä toinen viesti: Tietosuoja ja tavoitelomake
-        setTimeout(() => {
-            const privacyMessage = { name: "Maria", message: "Voit antaa myös <a href=\"https://docs.google.com/forms/d/1LJKHvTAu44Bb3f2iLKQyydiQGfbhRXEu83QThBr-mlE\">palautetta.</a>" };
-            this.messages.push(privacyMessage);
-            this.updateChatText(chatbox);
-        }, 3000); // Odota 3 sekuntia ensimmäisen viestin jälkeen ja lähetä kolmas viesti
     }
 
     addTypingAnimation(chatbox) {
@@ -89,10 +80,7 @@ class Chatbox {
         // Scroll to the bottom to keep the new message in view
         messageContainer.scrollTop = messageContainer.scrollHeight;
     }
-
-    scrollToBottom() {
-        this.chatBox.scrollTop = this.chatBox.scrollHeight; // Use chatBox here
-    }
+    
     
 
     removeTypingAnimation(chatbox) {
@@ -145,19 +133,12 @@ class Chatbox {
                 this.removeTypingAnimation(chatbox); // Remove animation after response
                 this.updateChatText(chatbox);
                 textField.value = '';
-                this.scrollToBottom();
-
             })
             .catch((error) => {
                 console.error('Error:', error);
                 this.removeTypingAnimation(chatbox); // Remove animation on error
                 this.updateChatText(chatbox);
                 textField.value = '';
-
-
-                this.scrollToBottom();
-
-
             });
     }
     
@@ -176,8 +157,10 @@ class Chatbox {
         const chatmessage = chatbox.querySelector('.chatbox__messages');
         chatmessage.innerHTML = html;
 
+        chatmessage.scrollTop = chatmessage.scrollHeight;
+
+
     }
-    
 }
 
 const chatbox = new Chatbox();
