@@ -89,7 +89,7 @@ class Chatbox {
     }
 
     scrollToBottom() {
-    chatBox.scrollTop = chatBox.scrollHeight;
+        this.args.chatBox.scrollTop = this.args.chatBox.scrollHeight;
         }
 
     
