@@ -145,7 +145,7 @@ class Chatbox {
                 this.updateChatText(chatbox);
                 textField.value = '';
 
-                scrollToBottom();
+                this.scrollToBottom();
 
             })
             .catch((error) => {
@@ -155,7 +155,7 @@ class Chatbox {
                 textField.value = '';
 
 
-                scrollToBottom();
+                this.scrollToBottom();
 
 
             });
