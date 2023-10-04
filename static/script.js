@@ -161,9 +161,6 @@ updateChatText(chatbox) {
         chatmessage.scrollTop = chatmessage.scrollHeight;
     }
 
-        const chatmessage = chatbox.querySelector('.chatbox__messages');
-        chatmessage.innerHTML = html;
-
     }
 }
 
