@@ -133,12 +133,17 @@ class Chatbox {
                 this.removeTypingAnimation(chatbox); // Remove animation after response
                 this.updateChatText(chatbox);
                 textField.value = '';
+
+                scrollToBottom()
             })
             .catch((error) => {
                 console.error('Error:', error);
                 this.removeTypingAnimation(chatbox); // Remove animation on error
                 this.updateChatText(chatbox);
                 textField.value = '';
+
+                scrollToBottom()
+
             });
     }
     
@@ -157,9 +162,10 @@ class Chatbox {
         const chatmessage = chatbox.querySelector('.chatbox__messages');
         chatmessage.innerHTML = html;
 
-        chatmessage.scrollTop = chatmessage.scrollHeight;
-
-
+    }
+    
+    function scrollToBottom() {
+        chatBox.scrollTop = chatBox.scrollHeight;
     }
 }
 
