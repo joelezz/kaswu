@@ -62,7 +62,7 @@ class Chatbox {
             const privacyMessage = { name: "Maria", message: "Voit antaa myös <a href=\"https://docs.google.com/forms/d/1LJKHvTAu44Bb3f2iLKQyydiQGfbhRXEu83QThBr-mlE\">palautetta.</a>" };
             this.messages.push(privacyMessage);
             this.updateChatText(chatbox);
-        }, 1000); // Odota 2 sekuntia ensimmäisen viestin jälkeen ja lähetä kolmas viesti
+        }, 3000); // Odota 3 sekuntia ensimmäisen viestin jälkeen ja lähetä kolmas viesti
     }
 
     addTypingAnimation(chatbox) {
@@ -87,7 +87,11 @@ class Chatbox {
         // Scroll to the bottom to keep the new message in view
         messageContainer.scrollTop = messageContainer.scrollHeight;
     }
-    
+
+    scrollToBottom() {
+    chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
     
 
     removeTypingAnimation(chatbox) {
@@ -141,7 +145,7 @@ class Chatbox {
                 this.updateChatText(chatbox);
                 textField.value = '';
 
-                chatBox.scrollTop = chatBox.scrollHeight;
+                scrollToBottom();
 
             })
             .catch((error) => {
@@ -150,7 +154,8 @@ class Chatbox {
                 this.updateChatText(chatbox);
                 textField.value = '';
 
-                chatBox.scrollTop = chatBox.scrollHeight;
+
+                scrollToBottom();
 
 
             });
