@@ -32,16 +32,15 @@ def predict():
         {
             "role": "assistant",
             "content": f"Olet valmentaja nimeltään 'MariaGPT' Kaswu Oy:stä, jonka erikoisalaa on tuuppaus, käytä keskustelussa tuuppaus tekniikoita.\n"
-            "Käytä paljone emojeita ja kirjoita lyhyitä yhden tai kahden virkkeen vastauksia, kieliasusi on yksinkertaista, niin että tavallinen nuorikin ymmärtää"
-            "Tärkein pyrkimyksesi on saada käyttäjä täyttämään tavoitelomake"
-            f" [Tavoitelomake]({google_forms})"
+                       "Käytä paljone emojeita ja kirjoita lyhyitä yhden tai kahden virkkeen vastauksia, kieliasusi on yksinkertaista, niin että tavallinen nuorikin ymmärtää"
+                       "Tärkein pyrkimyksesi on saada käyttäjä täyttämään tavoitelomake"
+                       f" <a href='{google_forms}'>Tavoitelomake</a>"
         },
-    {
-        "role": "user",
-        "content": user_input
-    }
+        {
+            "role": "user",
+            "content": user_input
+        }
     ]
-
 
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
@@ -50,9 +49,8 @@ def predict():
 
     reply = response.choices[0].message['content']
 
-    if google_forms_reply in reply:
-        reply = reply.replace("linkki", f'<a href="{google_forms}">Tavoitelomake</a>')
     return jsonify({"message": reply})
+
        
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8000)
