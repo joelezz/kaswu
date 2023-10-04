@@ -91,14 +91,6 @@ class Chatbox {
     scrollToBottom() {
         this.args.chatBox.scrollTop = this.args.chatBox.scrollHeight;
         }
-
-<<<<<<< HEAD
-    scrollToBottom() {
-        this.args.chatBox.scrollTop = this.args.chatBox.scrollHeight;
-        }
-        
-=======
->>>>>>> 13dbc982324d85add60eeaf44ee125f0493df8b0
     
 
     removeTypingAnimation(chatbox) {
