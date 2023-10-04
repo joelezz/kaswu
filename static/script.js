@@ -52,7 +52,7 @@ class Chatbox {
 
         // Lähetä toinen viesti: Tietosuoja ja tavoitelomake
         setTimeout(() => {
-            const privacyMessage = { name: "Maria", message: "Tietosuoja: Käytämme tietojasi vain keskustelun tarkoituksiin eikä niitä jaeta kolmansille osapuolille,  <a href=https://openai.com/policies/privacy-policy>OpenAI -tietosuojalomake.</a> . Tavoitelomakkeen löydät täältä: <a href=\"{google_forms}\">Tavoitelomake</a>." };
+            const privacyMessage = { name: "Maria", message: "Tietosuoja: Käytämme tietojasi vain keskustelun tarkoituksiin eikä niitä jaeta kolmansille osapuolille,  <a href=https://openai.com/policies/privacy-policy>OpenAI -tietosuojalomake.</a> . Tavoitelomakkeen löydät täältä: <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSeWO15gmTC3-m7fYRA90C7l_2CUKKqXJxqJ3t_E_UHAIQjT4A/viewform\">Tavoitelomake</a>." };
             this.messages.push(privacyMessage);
             this.updateChatText(chatbox);
         }, 2000); // Odota 2 sekuntia ensimmäisen viestin jälkeen ja lähetä toinen viesti
