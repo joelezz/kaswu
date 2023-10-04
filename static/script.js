@@ -130,10 +130,10 @@ class Chatbox {
             .then(r => {
                 let msg2 = { name: "Maria", message: r.message };
                 this.messages.push(msg2);
-                this.removeTypingAnimation(chatbox); // Remove animation after response
-                this.updateChatText(chatbox);
+                this.removeTypingAnimation(chatbox); // Poista animaatio vastauksen jälkeen
+                this.updateChatText(chatbox); // Päivitä chat-ikkuna uudella viestillä
                 textField.value = '';
-            })
+                })
             .catch((error) => {
                 console.error('Error:', error);
                 this.removeTypingAnimation(chatbox); // Remove animation on error
