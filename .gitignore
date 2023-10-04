@@ -9,3 +9,6 @@ venv/
 
 # Ignore database files
 db.sqlite
+
+# Ignore environment secrets
+*.env
