@@ -141,7 +141,8 @@ class Chatbox {
                 this.updateChatText(chatbox);
                 textField.value = '';
 
-                scrollToBottom()
+                chatBox.scrollTop = chatBox.scrollHeight;
+
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -149,7 +150,8 @@ class Chatbox {
                 this.updateChatText(chatbox);
                 textField.value = '';
 
-                scrollToBottom()
+                chatBox.scrollTop = chatBox.scrollHeight;
+
 
             });
     }
