@@ -9,6 +9,8 @@ class Chatbox {
         this.state = true;
         this.messages = [];
         this.messagesGenerated = false; // Initialize messagesGenerated here
+        this.chatBox = document.querySelector('.chatbox__messages'); // Define chatBox here
+
 
         this.display(); // avaa chat ikkunan heti alkuun
     }
@@ -89,8 +91,8 @@ class Chatbox {
     }
 
     scrollToBottom() {
-        this.args.chatBox.scrollTop = this.args.chatBox.scrollHeight;
-        }
+        this.chatBox.scrollTop = this.chatBox.scrollHeight; // Use chatBox here
+    }
     
 
     removeTypingAnimation(chatbox) {
